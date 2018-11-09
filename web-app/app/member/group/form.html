@@ -1,0 +1,32 @@
+<div class="page-header">
+    <h3 ng-show="$state.includes('member.group.create')" class="pull-left">创建会员组</h3>
+
+    <h3 ng-show="$state.includes('member.group.edit')" class="pull-left">编辑会员组</h3>
+</div>
+<form name="form" method="post" novalidate class="form-horizontal" autocomplete="off">
+
+    <div ng-show="errors" class="alert alert-warning">
+        <button type="button" class="close" ng-click="errors=null">&times;</button>
+        <p ng-repeat="error in errors" ng-bind="error.message"></p>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="name">
+            组名
+            <span class="required-indicator">*</span>
+        </label>
+
+        <div class="col-md-3">
+            <input class="form-control" type="text" id="name" placeholder="会员号" required=""
+                   ng-model="memberGroup.name">
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button ng-disabled="form.$invalid" type="submit" ng-click="submit()" class="btn btn-primary">确定</button>
+
+        <a href="#/member/group" class="btn btn-default">
+            取消
+        </a>
+    </div>
+</form>

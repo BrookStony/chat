@@ -1,0 +1,60 @@
+<div class="page-header">
+    <h3 class="pull-left">个人信息修改</h3>
+</div>
+
+<form name="form" method="post" novalidate class="form-horizontal">
+    <div ng-show="errors" class="alert alert-warning">
+        <button type="button" class="close" ng-click="errors=null">&times;</button>
+        <p ng-repeat="error in errors" ng-bind="error.message"></p>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label">
+            登录名
+            <span class="required-indicator">*</span>
+        </label>
+
+        <div class="col-md-3">
+            <p class="form-control-static" ng-bind="user.username"></p>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="password">
+            密码
+            <span class="required-indicator">*</span>
+        </label>
+
+        <div class="col-md-3">
+            <input class="form-control" type="password" id="password" placeholder="密码"
+                   ng-model="user.password">
+            <span class="help-block">保留为空则不修改.</span>
+        </div>
+    </div>
+    <div ng-show="user.password" class="form-group" ng-class="{'has-error':user.password!=user.rePassword}">
+        <label class="col-md-2 control-label" for="rePassword">
+            重复密码
+            <span class="required-indicator">*</span>
+        </label>
+
+        <div class="col-md-3">
+            <label class="control-label" ng-show="user.password!=user.rePassword">两次密码不一样</label>
+            <input class="form-control" type="password" id="rePassword" placeholder="重复密码"
+                   ng-model="user.rePassword">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="email">
+            电子邮件
+        </label>
+
+        <div class="col-md-3">
+            <input class="form-control" type="text" id="email" placeholder="电子邮件"
+                   ng-model="user.email">
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button ng-disabled="form.$invalid||user.password!=user.rePassword" type="submit" ng-click="submit()"
+                class="btn btn-primary">确定
+        </button>
+    </div>
+</form>

@@ -1,0 +1,13 @@
+<div id="articlePreview" class="article_preview">
+    <div class="article_content">
+        <h4 class="article_title"><a href="articleView?id={{article.id}}" target="_blank">{{article.title}}</a></h4>
+        <div class="article_date">
+            <span ng-bind="article.dateCreated"></span>
+        </div>
+        <div class="article_img_preview">
+            <img class="article_cover_img" ng-show="article.coverImage" ng-src="{{article.coverImage.url}}" alr="封面图片">
+            <i class="article_cover_text" ng-show="!article.coverImage">封面图片</i>
+        </div>
+        <p class="article_describe" ng-bind="article.description"></p>
+    </div>
+</div>

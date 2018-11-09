@@ -1,0 +1,96 @@
+<div class="material_content">
+    <div class="title_tab">
+        <ul class="tab_navs title_tab">
+            <li class="tab_nav first js_top selected">
+                <a href="#/material/article?accountId={{accountId}}" class="hidefocus" hidefocus="true">图文消息</a>
+            </li>
+            <li class="tab_nav">
+                <a href="#/material/picture?accountId={{accountId}}" class="hidefocus" hidefocus="true">图片</a>
+            </li>
+            <li class="tab_nav">
+                <a href="#/material/audio?accountId={{accountId}}" class="hidefocus" hidefocus="true">语音</a>
+            </li>
+            <li class="tab_nav">
+                <a href="#/material/video?accountId={{accountId}}" class="hidefocus" hidefocus="true">视频</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="article_list_title article_list_main_bd">
+        <div class="sub_title_bar">
+            <div class="info">
+                <h3>图文消息(共<span ng-bind="totalItems"></span>个)</h3>
+				<div class="rank_style">
+					<a href="javascript:;" class="btn_card_rank" id="js_cardview" alt="卡片式" ng-click="transToArticleCard()">卡片式</a>
+					<a href="javascript:;" class="btn_list_rank current" id="js_listview" alt="列表式">列表式</a>
+				</div>
+            </div>
+        </div>
+        <div class="row" style="margin-left: 15px">
+            <div class="col-lg-4">
+                <div class="btn-group btn-group-justified">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-success" ng-click="transToCreateArticle()">
+                            <i class="fa fa-file-image-o fa-2x pull-left"></i> 添加单图文
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-success" ng-click="transToMulCreateArticle()">
+                            <i class="fa fa-file-image-o fa-2x pull-left"></i> 添加多图文
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<table id="article-grid" class="table table-bordered table-striped table-hover" style="margin-top: 15px">
+    <thead>
+    <tr>
+        <th sorting="sort" column="title">图文</th>	
+        <th style="width: 100px">阅读次数</th>
+		<th style="width: 100px">分享次数</th>
+		<th style="width: 100px">阅读人数</th>
+		<th style="width: 100px">发送人数</th>
+        <th sorting="sort" column="dataCreated" style="width: 120px">创建时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="article in articles">
+        <td>
+            <div class="article_msg">
+				<a class="title_wrap" href="articleView?id={{article.id}}" target="_blank">
+					<img class="icon" ng-src="{{article.coverImage.url}}">
+					<span class="title">1.{{article.title}}</span>
+				</a>
+				<p class="desc">
+					{{article.description}}
+				</p>
+				<p ng-repeat="articleItem in article.articleItems">
+					<a class="title_wrap" href="articleView?item_id={{articleItem.id}}" target="_blank">
+						<span class="title">{{articleItem.no + 2}}.{{articleItem.title}}</span>
+					</a>
+				</p>   
+			</div>
+        </td>
+        <td></td>
+		<td></td>
+        <td></td>
+		<td></td>
+        <td ng-bind="article.dateCreated"></td>
+        <td>
+			<a href="#/material/article/editMulArticle/{{article.id}}" style="padding-left: 5px;" title="编辑" ng-if="article.isMulArticle">
+                <i class="glyphicon glyphicon-edit"></i>
+            </a>
+			<a href="#/material/article/edit/{{article.id}}" style="padding-left: 5px;" title="编辑" ng-if="!article.isMulArticle">
+                <i class="glyphicon glyphicon-edit"></i>
+            </a>
+            <a href="javascript:void(0)" style="padding-left: 5px;" title="删除">
+                <i class="glyphicon glyphicon-remove" ng-click="remove(article.id)"></i>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<pagination total-items="totalItems" page="currentPage" items-per-page="max" max-size="10"></pagination>

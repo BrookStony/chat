@@ -1,0 +1,68 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">模板消息</h1>
+    </div>
+</div>
+<div class="btn-toolbar">
+    <div class="title_tab">
+        <ul class="tab_navs title_tab">
+            <li data-id="total" class="tab_nav first js_top" ng-class="{'selected': 'total' == selectedMsgTab}"><a href="javascript:void(0);" ng-click="searchMessage('total')">全部消息</a></li>
+            <li data-id="today" class="tab_nav " ng-class="{'selected': 'today' == selectedMsgTab}"><a href="javascript:void(0);" ng-click="searchMessage('today')">今天</a></li>
+            <li data-id="yesterday" class="tab_nav" ng-class="{'selected': 'yesterday' == selectedMsgTab}"><a href="javascript:void(0);" ng-click="searchMessage('yesterday')">昨天</a></li>
+            <li data-id="beforeYesterday" class="tab_nav" ng-class="{'selected': 'beforeYesterday' == selectedMsgTab}"><a href="javascript:void(0);" ng-click="searchMessage('beforeYesterday')">前天</a></li>
+            <li data-id="fivedays" class="tab_nav" ng-class="{'selected': 'fivedays' == selectedMsgTab}"><a href="javascript:void(0);" ng-click="searchMessage('fivedays')">更早</a></li>
+            <div class="btn-group pull-right">
+                <div class="input-group" style="width: 200px">
+                    <input ng-model="filter" type="text" ui-blur="refresh()" class="form-control" placeholder="消息内容..."
+                           style="width: 200px;display: inline">
+                    <span class="input-group-addon" ng-click="refresh()"><i class="glyphicon glyphicon-search"></i></span>
+                </div>
+            </div>
+        </ul>
+    </div>
+</div>
+<table id="message-grid" class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr>
+        <th sorting="sort" column="toUserId" style="width: 160px">用户</th>
+        <th sorting="sort" column="content" style="width: 800px">消息</th>
+        <th sorting="sort" column="status" style="width: 100px">状态</th>
+        <th sorting="sort" column="msgTime">时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="msg in datas">
+        <td>
+            <div class="user_info" ng-show="msg.fromUser">
+                <a href="#/singleSend/toUser?userId={{msg.fromUser.id}}&userName={{msg.fromUser.nickName}}" class="avatar" target="_blank">
+                    <img src="{{msg.fromUser.headimgurl}}">
+                </a>
+                <span ng-bind="msg.fromUser.nickName"></span>
+            </div>
+            <div class="user_info" ng-show="msg.toUser">
+                <a href="#/singleSend/toUser?userId={{msg.toUser.id}}&userName={{msg.toUser.nickName}}" class="avatar" target="_blank">
+                    <img src="{{msg.toUser.headimgurl}}">
+                </a>
+                <span ng-bind="msg.toUser.nickName"></span>
+            </div>
+        </td>
+        <td>
+            <div class="user_info" ng-show="msg.content">
+                <span ng-bind="msg.content"></span>
+            </div>
+            <div class="user_info" ng-show="msg.mediaId">
+                <span ng-bind="msg.mediaId"></span>
+            </div>
+        </td>
+        <td ng-bind="msg.status | chatMessageStatus"></td>
+        <td ng-bind="msg.msgTime"></td>
+        <td>
+            <a href="javascript:void(0)" style="padding-left: 5px;" title="删除">
+                <i class="glyphicon glyphicon-remove"></i>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<pagination total-items="totalItems" page="currentPage" items-per-page="max" max-size="10"></pagination>

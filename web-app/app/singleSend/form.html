@@ -1,0 +1,219 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h3 class="page-header">与&nbsp;{{member.nickName}}&nbsp;的聊天</h3>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 20px">
+    <div class="col-lg-10">
+        <div class="mass_send_message_tab">
+            <ul class="tab_navs" style="line-height: 38px">
+                <li class="tab_nav tab_text width5" title="文字">
+                    <a href="javascript:void(0)" ng-click="showTextArea()">&nbsp;<i class="fa fa-pencil"></i></a>
+                </li>
+                <li class="tab_nav tab_img width5" title="图片">
+                    <a href="javascript:void(0)" ng-click="openImageModal()">&nbsp;<i class="fa fa-picture-o"></i></a>
+                </li>
+                <li class="tab_nav tab_audio width5" title="语音">
+                    <a href="javascript:void(0)" ng-click="openModal()">&nbsp;<i class="fa fa-microphone-slash"></i></a>
+                </li>
+                <li class="tab_nav tab_video width5" title="视频">
+                    <a href="javascript:void(0)" ng-click="openModal()">&nbsp;<i class="fa fa-video-camera"></i></a>
+                </li>
+                <li class="tab_nav tab_article width5" title="图文消息">
+                    <a href="javascript:void(0)" ng-click="openArticleModal()">&nbsp;<i class="fa fa-file-image-o"></i></a>
+                </li>
+            </ul>
+            <div class="tab_panel">
+                <div class="tab_content" ng-show="customerSend_text">
+                    <div class="emotion_editor">
+                        <div class="edit_area js_editorArea" ng-maxlength="600" ng-model="sendText" contenteditable="true" style="overflow-y: auto;overflow-x: hidden">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab_content" ng-show="customerSend_image">
+                    <div class="js_imageArea">
+                        <div class="msgSender_media_1_2">
+                            <div class="appmsgSendedItem simple_img">
+                                <a target="_blank" href="javascript:void(0)">
+                                    <img class="icon" width="80px" height="80px" ng-src="{{imageUrl}}" alt="" ng-show="imageUrl">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab_content" style="display: none">
+                    <div class="js_audioArea">
+                        <div class="msgSender_media_1_2">
+                            <div class="appmsgSendedItem simple_img">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab_content" style="display: none">
+                    <div class="js_videoArea">
+                        <div class="msgSender_media_1_2">
+                            <div class="appmsgSendedItem simple_img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab_content" ng-show="customerSend_article">
+                    <!--<div class="article_preview_area" ng-show="article.articleItems.length == 0" style="width: 40%" src="'app/material/article/article.html'">-->
+                    <!--</div>-->
+                    <!--<div class="mul_article_preview_area" ng-show="article.articleItems" style="width: 40%" src="'app/material/article/mulArticle.html'">-->
+                    <!--</div>-->
+                    <div class="article_preview_area" ng-show="article.articleItems.length == 0">
+                        <div id="articlePreview" class="article_preview">
+                            <div class="article_content">
+                                <h4 class="article_title"><a href="articleView?id={{article.id}}" target="_blank">{{article.title}}</a></h4>
+                                <div class="article_date">
+                                    <span ng-bind="article.dateCreated"></span>
+                                </div>
+                                <div class="article_img_preview">
+                                    <img class="article_cover_img" ng-show="article.coverImage" ng-src="{{article.coverImage.url}}" alr="封面图片">
+                                    <i class="article_cover_text" ng-show="!article.coverImage">封面图片</i>
+                                </div>
+                                <p class="article_describe" ng-bind="article.description"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mul_article_preview_area" ng-show="article.articleItems">
+                        <div class="mul_article_preview">
+                            <div class="mul_article_content">
+                                <div class="main_article_date">
+                                    <span ng-bind="article.dateCreated"></span>
+                                </div>
+                                <div class="main_article">
+                                    <div class="article_img_preview">
+                                        <img class="article_cover_img" ng-show="article.coverImage" ng-src="{{article.coverImage.url}}" alr="封面图片">
+                                        <span class="article_cover_text" ng-show="!article.coverImage">封面图片</span>
+                                    </div>
+                                    <div class="main_article_title"><a href="articleView?id={{article.id}}" target="_blank" ng-bind="article.title"></a></div>
+                                </div>
+                                <div class="article_item" ng-repeat="articleItem in article.articleItems">
+                                    <div class="article_item_title">
+                                        <h4><a href="articleView?item_id={{articleItem.id}}" target="_blank" ng-bind="articleItem.title"></a></h4>
+                                    </div>
+                                    <div class="article_item_img_preview" >
+                                        <img ng-src="{{articleItem.coverImage.url}}" style="width: 100%;height: 100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 20px;margin-bottom: 30px">
+    <div class="col-lg-12">
+        <button class="btn btn-success" ng-click="customSend()" style="width: 10%">发送</button>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-10">
+        <div style="margin-bottom: 30px">
+            <h4>最近10条记录</h4>
+            <ul style="display: block" class="single_message_list" id="listContainer">
+                <li class="single_message_item" ng-repeat="message in messages">
+                    <div ng-if="message.toUser">
+                        <div class="single_message_info">
+                            <div class="single_message_status">
+                                <em class="tips">{{message.status | messageStatus}}</em>
+                            </div>
+                            <div class="single_message_time">{{message.msgTime | date:'yy/MM/dd HH:mm EEE'}}</div>
+                            <div class="single_message_user_info">
+                                <span class="account_name">{{message.account.name}}</span>
+                                <span class="avatar">
+                                    <img src="images/icons/idnms.jpg">
+                                </span>
+                            </div>
+                        </div>
+                        <div class="single_message_content text" ng-if="message.type == 0">
+                            <div class="wxMsg">
+                                {{message.content}}
+                            </div>
+                        </div>
+                        <div class="single_message_content" ng-if="message.type == 1">
+                            <div class="wxMsg">
+                                <div class="single_appmsgSendedItem">
+                                    <a class="title_wrap" href="{{message.picUrl}}" target="_blank">
+                                        <img class="icon" ng-src="{{message.picUrl}}">
+                                        <span class="title">[图片]</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single_message_content" ng-if="message.type==5">
+                            <div class="wxMsg">
+                                <div class="single_appmsgSendedItem" ng-show="message.news">
+									<a class="title_wrap" href="{{message.news.articles[0].url}}" target="_blank"> 
+                                        <img class="icon" ng-src="{{message.news.coverImage}}">
+                                    </a>
+									<p ng-repeat="article in message.news.articles">
+										<a class="title_wrap" href="{{article.url}}" target="_blank"> 
+											<span class="title">{{article.no}}.{{article.title}}</span>
+										</a>
+									</p>   
+									<p class="desc">
+										<a href="message.news.articles[0].url" class="appmsg_desc" target="_blank">{{message.news.articles[0].description}}</a>
+									</p>									
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div ng-if="message.fromUser">
+                        <div class="single_message_opr">
+                            <!--<a href="javascript:void(0)" title="收藏消息"><i class="fa fa-star"></i></a>-->
+                            <a href="javascript:void(0)" title="保存为素材" ng-if="message.type==1"><i class="fa fa-save"></i></a>
+                            <a href="javascript:void(0)" title="下载" ng-click="downLoad(message.picUrl,message.picturePath)" ng-if="message.type==1"><i class="fa fa-download"></i></a>
+                            <a href="javascript:void(0)" title="快速回复" ng-click="quick_reply=!quick_reply"><i class="fa fa-reply"></i></a>
+                        </div>
+                        <div class="single_message_info">
+                            <div class="single_message_status">
+                                <em class="tips" ng-show="4 == message.status || 7 == message.status">{{message.status | messageStatus}}</em>
+                            </div>
+                            <div class="single_message_time">{{message.msgTime | date:'yy/MM/dd HH:mm EEE'}}</div>
+                            <div class="single_message_user_info">
+                                <a class="nickName" href="#/singleSend?userId={{message.fromUser.id}}&userName={{message.fromUser.nickName}}" target="_blank" ng-bind="message.fromUser.nickName"></a>
+                                <a class="avatar"  href="#/singleSend?userId={{message.fromUser.id}}&userName={{message.fromUser.nickName}}" target="_blank">
+                                    <img ng-src="{{message.fromUser.headimgurl}}">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="single_message_content text">
+                            <div class="wxMsg">
+                                <div ng-if="message.type==0">{{message.content}}</div>
+                                <div class="single_appmsgSendedItem" ng-if="message.type==1">
+                                    <a href="{{message.picUrl}}" target="_blank" class="title_wrap">
+                                        <img class="icon" ng-src="{{message.picUrl}}">
+                                        <span class="title">[图片]</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="quick_reply_box" ng-show="quick_reply">
+                            <label for class="frm_label">快速回复:</label>
+                            <div class="emotion_editor_wrp">
+                                <div class="single_emotion_editor">
+                                    <div class="edit_area" id="quick_reply_text" contenteditable="true" ng-maxlength="600" ng-model="quickSendText" style="overflow-y: auto;overflow-x: hidden;"></div>
+                                </div>
+                            </div>
+                            <p class="quick_reply_box_tool_bar">
+                                <span class="btn btn-success" ng-click="customSendText()" style="width: 12%;margin-right: 10px">发送</span>
+                                <span class="btn btn-default" style="width: 12%" ng-click="quick_reply=!quick_reply">收起</span>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <pagination total-items="totalItems" page="currentMessagePage" items-per-page="max" max-size="10"></pagination>
+    </div>
+</div>
+<div ng-include src="'app/common/topMessage.html'" ng-show="messageOk"></div>

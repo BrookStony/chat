@@ -1,0 +1,92 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">群发功能</h1>
+    </div>
+</div>
+<div class="btn-toolbar">
+    <div class="title_tab">
+        <ul class="tab_navs title_tab">
+            <li class="tab_nav first js_top">
+                <a href="#/massSend/send" class="hidefocus" hidefocus="true">
+                    新建群发消息
+                </a>
+            </li>
+            <li class="tab_nav selected">
+                <a href="#/massSend/list" class="hidefocus" hidefocus="true">
+                    已发送
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<!--<div class="btn-toolbar" style="margin-top: 0">-->
+    <!--<div class="btn-group pull-right">-->
+        <!--<div class="input-group" style="width: 200px">-->
+            <!--<input ng-model="filter" type="text" ui-blur="refresh()" class="form-control" placeholder="内容..."-->
+                   <!--style="width: 200px;display: inline">-->
+            <!--<span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+<table id="mass-grid" class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr>
+        <th>消息类型</th>
+        <th sorting="sort" column="isToAll" style="width: 140px">发送对象</th>
+        <th sorting="sort" column="msgTime" style="width: 120px">发送时间</th>
+        <th sorting="sort" column="status" style="width: 120px">发送状态</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="msg in datas">
+        <td>
+            <div class="chat_msg content" ng-show="msg.content">
+                <span ng-bind="msg.content"></span>
+            </div>
+            <div class="chat_msg" ng-show="msg.materialId">
+                <div class="media">
+                    <a href="{{msg.material.url}}" class="title_wrap" target="_blank">
+                        <img class="icon" ng-src="{{msg.material.url}}">
+                        <span class="title">[图片]</span>
+                    </a>
+                </div>
+            </div>
+            <div class="article_msg" ng-show="msg.articleId">
+				<a class="title_wrap" href="articleView?id={{msg.article.id}}" target="_blank">
+					<img class="icon" ng-src="{{msg.article.coverImage.url}}">
+					<span class="title">[图文消息]</span>
+				</a>
+				<br>
+				<a class="title_wrap" href="articleView?id={{msg.article.id}}" target="_blank">
+					<span class="title">1.{{msg.article.title}}</span>
+				</a>
+				<p class="desc">
+					{{msg.article.description}}
+				</p>
+				<p ng-repeat="articleItem in msg.article.articleItems">
+					<a class="title_wrap" href="articleView?item_id={{articleItem.id}}" target="_blank">
+						<span class="title">{{articleItem.no + 2}}.{{articleItem.title}}</span>
+					</a>
+				</p>
+            </div>
+        </td>
+		<td>
+            <p class="desc" ng-if="msg.isToAll">全部用户</p>
+            <p class="desc" ng-if="!msg.isToAll">部分用户</p>
+            <p class="desc" ng-if="msg.sexType">性别：{{msg.sexType}}</p>
+            <p class="desc" ng-if="msg.group">用户组：{{msg.group}}</p>
+            <p class="desc" ng-if="msg.location">区域：{{msg.location}}</p>
+		</td>
+		<td ng-bind="msg.msgTime"></td>
+        <td ng-bind="msg.status|massMessageStatus"></td>
+        <td>
+            <a href="javascript:void(0)" style="padding-left: 5px;" title="删除">
+                <i class="glyphicon glyphicon-remove" ng-click="remove(msg.id)"></i>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<pagination total-items="totalItems" page="currentPage" items-per-page="max" max-size="10"></pagination>

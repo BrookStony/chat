@@ -1,0 +1,54 @@
+.picture_group {
+}
+.picture_items {
+    float: left;
+    text-align: center;
+    margin-bottom: 20px;
+    margin-right: 15px;
+    border: 1px solid #e7e7eb;
+}
+.pic {
+    /*width: 169px;*/
+    /*height: 169px;*/
+    width: 180px;
+    height: 169px;
+    display: block;
+    border-bottom: 1px solid #e7e7eb;
+}
+.check_content {
+    height: 32px;
+    line-height: 32px;
+    display: block;
+    overflow: hidden;
+}
+.frm_checkbox_label {
+    margin-right: 0;
+    line-height: 1.6;
+    display: inline-block;
+    text-align: left;
+    cursor: pointer;
+}
+.msg_card {
+    height: 30px;
+    background-color: #f4f4f4;
+}
+.msg_card .grid_item {
+    display: inline;
+    float: left;
+    text-align: center;
+    line-height: 30px;
+    height: 30px;
+    border: 1px solid #e7e7eb;
+}
+.msg_card .size1of3 {
+    width: 33.33%;
+}
+.group-menu:hover{
+    background-color: #f4f5f9;
+}
+.group-menu a {
+    text-decoration: none;
+}
+.current_group {
+    background-color: #f4f5f9;
+}

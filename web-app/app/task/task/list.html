@@ -1,0 +1,57 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">任务列表</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="btn-toolbar" style="margin-top: 0">
+    <div class="btn-group">
+        <a href="#/system/task/create" class="btn btn-success">
+            <i class="glyphicon glyphicon-plus"></i>新增任务
+        </a>
+    </div>
+    <div class="btn-group">
+        <button ng-disabled="closeDisabled" ng-click="refresh()" class="btn btn-default">
+            <i class="glyphicon glyphicon-refresh"></i> 刷新
+        </button>
+    </div>
+    <div class="btn-group pull-right">
+        <div class="input-group" style="width: 200px">
+            <input ng-model="filter" type="text" ui-blur="refresh()" class="form-control" placeholder="名称..."
+                   style="width: 200px;display: inline">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+        </div>
+    </div>
+</div>
+<table id="task-grid" class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr>
+        <th sorting="sort" column="taskname">登录名</th>
+        <th sorting="sort" column="name">名称</th>
+        <th sorting="sort" column="phone">电话</th>
+        <th sorting="sort" column="email">邮箱</th>
+        <th>角色</th>
+        <th style="width: 80px;">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="task in datas">
+        <td ng-bind="task.taskname"></td>
+        <td ng-bind="task.name"></td>
+        <td ng-bind="task.phone"></td>
+        <td ng-bind="task.email"></td>
+        <td></td>
+        <td>
+            <a href="#/system/task/edit/{{ task.id }}" title="编辑">
+                <i class="glyphicon glyphicon-edit"></i>
+            </a>
+            <a href="javascript:void(0)" ng-click="remove(task.id)" style="margin-left: 5px;"
+               title="删除">
+                <i class="glyphicon glyphicon-remove"></i>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<pagination total-items="totalItems" page="currentPage" items-per-page="max" max-size="10"></pagination>
+

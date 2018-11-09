@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menus>
+    <menu id="100000" no="1" code="dashboard" name="监控板" icon="fa fa-dashboard fa-fw" url="#/dashboard"/>
+    <menu id="200000" no="2" code="function" name="功能" icon="glyphicon glyphicon-th-large" url="#">
+        <menuitem id="200001" no="1" code="function.batchMessage" name="群发功能" url="#/massSend?accountId ={{accountId}}"/>
+        <menuitem id="200002" no="2" code="function.robotMessage" name="自动回复" url="#/autoReplyRule?accountId ={{accountId}}"/>
+        <menuitem id="200003" no="3" code="function.wechatMenu" name="自定义菜单" url="#/weChatMenu?accountId={{accountId}}"/>
+        <menuitem id="200004" no="4" code="function.templateMessage" name="模板消息" url="#/templateMessage?accountId ={{accountId}}"/>
+    </menu>
+    <menu id="300000" no="3" code="manage" name="管理" icon="glyphicon glyphicon-hdd" url="#">
+        <menuitem id="300001" no="1" code="manage.member" name="用户管理" url="#/member?accountId={{accountId}}"/>
+        <menuitem id="300002" no="2" code="manage.chatMessage" name="消息管理" url="#/chatMessage?accountId ={{accountId}}">
+            <permission no="1" name="消息" url="/chatMessage/**"/>
+        </menuitem>
+        <menuitem id="300003" no="3" code="manage.material" name="素材管理" url="#/material?accountId ={{accountId}}">
+            <permission no="1" name="素材" url="/material/**"/>
+        </menuitem>
+    </menu>
+    <menu id="400000" no="4" code="stat" name="统计" icon="glyphicon glyphicon-stats" url="#">
+        <menuitem id="400001" no="1" code="stat.memberStat" name="用户分析" url="#/memberStat?accountId={{accountId}}"/>
+        <menuitem id="400002" no="2" code="stat.newsMessageStat" name="图文分析" url="#/newsMessageStat?accountId={{accountId}}"/>
+        <menuitem id="400003" no="3" code="stat.chatMessageStat" name="消息分析" url="#/chatMessageStat?accountId={{accountId}}"/>
+        <menuitem id="400004" no="4" code="stat.apiStat" name="接口分析" url="#/apiStat?accountId={{accountId}}"/>
+    </menu>
+    <menu id="500000" no="5" code="alert" name="告警" icon="glyphicon glyphicon-bell" url="#">
+        <menuitem id="500001" no="1" code="alert.alert" name="活动告警" url="#/alert"/>
+        <menuitem id="500002" no="2" code="alert.alertHistory" name="历史告警" url="#/alertHistory"/>
+        <menuitem id="500003" no="3" code="stat.alertType" name="告警类型" url="#/alertType"/>
+    </menu>
+    <menu id="600000" no="6" code="task" name="任务" icon="glyphicon glyphicon-tasks" url="#">
+        <menuitem id="600001" no="1" code="task.task" name="任务列表" url="#/task"/>
+        <menuitem id="600002" no="2" code="task.taskRecord" name="任务记录" url="#/taskRecord"/>
+    </menu>
+    <menu id="700000" no="7" code="setting" name="设置" icon="glyphicon glyphicon-wrench" url="#">
+        <menuitem id="700001" no="1" code="setting.account" name="微信公众号" url="#/account"/>
+        <menuitem id="700002" no="2" code="setting.messageTemplate" name="消息模板" url="#/messageTemplate?accountId ={{accountId}}"/>
+        <menuitem id="700003" no="3" code="setting.bindAccountSetting" name="账号绑定" url="#/bindAccountSetting?accountId ={{accountId}}"/>
+        <menuitem id="700004" no="4" code="setting.tag" name="标签" url="#/tag"/>
+    </menu>
+    <menu id="800000" no="8" code="system" name="系统" icon="glyphicon glyphicon-cog" url="#">
+        <menuitem id="800001" no="1" code="system.user" name="用户管理" url="#/user"/>
+        <menuitem id="800002" no="2" code="system.role" name="角色管理" url="#/role"/>
+        <menuitem id="800003" no="3" code="system.userGroup" name="用户组管理" url="#/userGroup"/>
+        <menuitem id="800004" no="4" code="system.menu" name="菜单管理" url="#/menu"/>
+        <menuitem id="800005" no="5" code="system.notification" name="通知管理" url="#/notification"/>
+        <menuitem id="800006" no="6" code="system.operlog" name="操作日志" url="#/operlog"/>
+    </menu>
+    <menu id="900000" no="9" code="northapi" name="开放接口" icon="glyphicon glyphicon-transfer" url="#">
+        <menuitem id="900001" no="1" code="northapi.apiaccount" name="API帐号" url="#/apiaccount"/>
+    </menu>
+</menus>
+
+

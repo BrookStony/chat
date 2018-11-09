@@ -1,0 +1,98 @@
+<div class="title_tab">
+    <ul class="tab_navs title_tab">
+        <li class="tab_nav first js_top selected">
+            <a href="#/material/article?accountId={{accountId}}" class="hidefocus" hidefocus="true">图文消息</a>
+        </li>
+        <li class="tab_nav">
+            <a href="#/material/picture?accountId={{accountId}}" class="hidefocus" hidefocus="true">图片</a>
+        </li>
+        <li class="tab_nav">
+            <a href="#/material/audio?accountId={{accountId}}" class="hidefocus" hidefocus="true">语音</a>
+        </li>
+        <li class="tab_nav">
+            <a href="#/material/video?accountId={{accountId}}" class="hidefocus" hidefocus="true">视频</a>
+        </li>
+    </ul>
+</div>
+<div>
+    <div class="row">
+        <div class="col-md-12">
+            <ol class="breadcrumb">
+                <li><a href="#/material?accountId={{accountId}}" style= 'color:#0072bc'>图文消息</a></li>
+                <li class="active">新建图文消息</li>
+            </ol>
+        </div>
+        <div class="col-lg-1"></div>
+        <div class="col-lg-2">
+            <div class="article_preview_area">
+                <div id="articlePreview" class="article_preview">
+                    <div class="article_content">
+                        <h4 class="article_title" ng-bind="article.title || '标题'"></h4>
+                        <div class="article_img_preview">
+                            <img class="article_cover_img" ng-show="article.coverImage" ng-src="{{article.coverImage.url}}" alr="封面图片">
+                            <i class="article_cover_text" ng-show="!article.coverImage">封面图片</i>
+                        </div>
+                        <p class="article_describe" ng-bind="article.description"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-lg-offset-1">
+            <div id="articleEditorArea" class="article_editor_area">
+                <div class="inner">
+                    <form role="form" name="articleForm" enctype="multipart/form-data">
+                        <div ng-show="errors" class="alert alert-warning">
+                            <button type="button" class="close" ng-click="errors=null">&times;</button>
+                            <p ng-repeat="error in errors" ng-bind="error.message"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="title">标题</label>
+                            <input class="form-control" id="title" name="title" ng-model="article.title" ng-maxlength="50" placeholder="Enter title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="author">作者(选填)</label>
+                            <input class="form-control" id="author" name="author" ng-model="article.author" placeholder="Enter author">
+                        </div>
+                        <div class="form-group">
+                            <label for="coverImage">封面</label><p>(大图片建议尺寸:900像素 * 500像素)</p>
+                            <span class="btn btn-success fileinput-button">
+                                <i class="glyphicon glyphicon-upload"></i>
+                                <span>上传</span>
+                                <input id="coverImage" type="file" name="picture" onchange="angular.element(this).scope().file_changed(this)">
+                            </span>
+                            <span class="btn btn-default" ng-click="openImgModal()">
+                                <i class="glyphicon glyphicon-picture"></i>
+                                <span>从图片库中选择</span>
+                            </span>
+                            <p style="margin-top: 10px;" ng-show="article.coverImage">
+                                <img class="upload_img_preview" ng-src="{{article.coverImage.url}}">
+                                <span><a href="javascript: void(0)" ng-click="removeCoverImage()" style="vertical-align: bottom;color: blue">删除</a></span>
+                            </p>
+                        </div>
+                        <div class="form-group">
+                            <label for="description" ng-click="showDescription =!showDescription" ng-show="!showDescription">
+                                <a href="javascript:void(0)" style="color:#459ae9">添加摘要</a>
+                            </label>
+                            <label for="description" ng-show="showDescription">摘要</label>
+                            <textarea ng-show="showDescription" class="form-control" id="description" name="description" ng-model="article.description" maxlength="400"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label>正文</label>
+                            <div um-editor id="myEditor" style="height: 270px" ng-model="article.content"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="originalUrl" ng-click="showOriginalUrl =!showOriginalUrl" ng-show="!showOriginalUrl">
+                                <a href="javascript:void(0)" style="color:#459ae9">添加原文链接</a>
+                            </label>
+                            <label for="originalUrl" ng-show="showOriginalUrl">原文链接</label>
+                            <input ng-show="showOriginalUrl" class="form-control" id="originalUrl" name="originalUrl" ng-model="article.originalUrl" placeholder="原文链接">
+                        </div>
+                        <button type="submit" class="btn btn-success" ng-click="submit()" ng-disabled="articleForm.$invalid">保存</button>
+                    </form>
+                </div>
+                <i class="arrow arrow_out" style="margin-top: 0px;"></i>
+                <i class="arrow arrow_in" style="margin-top: 0px;"></i>
+            </div>
+        </div>
+    </div>
+</div>

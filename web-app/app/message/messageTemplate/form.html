@@ -1,0 +1,109 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 ng-show="$state.includes('messageTemplate.create')" class="page-header">创建消息模板</h1>
+        <h1 ng-show="$state.includes('messageTemplate.edit')" class="page-header">编辑消息模板</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+ <div class="row">
+     <div class="col-lg-12">
+         <div class="panel panel-default">
+             <div class="panel-heading">
+                 消息模板
+             </div>
+             <div class="panel-body">
+                 <div class="row">
+                     <div class="col-lg-12">
+                        <form name="form" method="post" novalidate class="form-horizontal" autocomplete="off">
+
+    <div ng-show="errors" class="alert alert-warning">
+        <button type="button" class="close" ng-click="errors=null">&times;</button>
+        <p ng-repeat="error in errors" ng-bind="error.message"></p>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="templateId">
+            模板ID
+            <span class="required-indicator">*</span>
+        </label>
+
+        <div class="col-md-4">
+            <input class="form-control" type="text" id="templateId" placeholder="模板ID" required=""
+                   ng-model="messageTemplate.templateId">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="title">
+            标题
+            <span class="required-indicator">*</span>
+        </label>
+
+        <div class="col-md-3">
+            <input class="form-control" type="text" id="title" placeholder="标题" required=""
+                   ng-model="messageTemplate.title">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="primaryIndustry">
+            一级行业
+            <span class="required-indicator">*</span>
+        </label>
+
+        <div class="col-md-3">
+            <input class="form-control" type="text" id="primaryIndustry" placeholder="一级行业" required=""
+                   ng-model="messageTemplate.primaryIndustry">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="secondaryIndustry">
+            二级行业
+            <span class="required-indicator">*</span>
+        </label>
+
+        <div class="col-md-3">
+            <input class="form-control" type="text" id="secondaryIndustry" placeholder="二级行业" required=""
+                   ng-model="messageTemplate.secondaryIndustry">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="content">
+            详细内容
+            <span class="required-indicator">*</span>
+        </label>
+
+        <div class="col-md-3">
+            <textarea id="content" name="content" cols="100" rows="10" placeholder="详细内容" required=""
+                      ng-model="messageTemplate.content"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="sample">
+            内容示例
+            <span class="required-indicator">*</span>
+        </label>
+
+        <div class="col-md-3">
+            <textarea id="sample" name="sample" cols="100" rows="10" placeholder="内容示例" required=""
+                      ng-model="messageTemplate.sample"></textarea>
+        </div>
+    </div>
+    <div class="form-actions">
+        <button ng-disabled="form.$invalid" type="submit" ng-click="submit()" class="btn btn-primary">确定</button>
+        <a href="#/messageTemplate" class="btn btn-default">
+            取消
+        </a>
+    </div>
+</form>
+
+                     </div>
+                     <!-- /.row (nested) -->
+                 </div>
+                 <!-- /.panel-body -->
+             </div>
+             <!-- /.panel -->
+         </div>
+         <!-- /.col-lg-12 -->
+     </div>
+     <!-- /.row -->
+</div>
+

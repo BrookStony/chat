@@ -1,0 +1,348 @@
+html {
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    line-height: 1.6;
+}
+
+strong, b {
+    font-weight: bold;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+}
+
+body {
+    background-color: #e7e8eb;
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif
+}
+
+a {
+    color: #607fa6;
+    text-decoration: none;
+}
+
+h2 {
+    display: block;
+    /*font-size: 1.5em;*/
+    -webkit-margin-before: 0.83em;
+    -webkit-margin-after: 0.83em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    /*font-weight: bold;*/
+}
+
+.rich_media_title {
+    margin-bottom: 8px;
+    line-height: 1.2;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.rich_media_thumb {
+    width: 100%;
+    margin: 18px 0 -6px;
+}
+img {
+    height: auto!important;
+}
+
+.rich_media_meta_nickname {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 9em;
+}
+a {
+    color: -webkit-link;
+    text-decoration: underline;
+    cursor: auto;
+}
+
+.rich_media_area_primary {
+    position: relative;
+    padding: 10px 15px 15px;
+    background-color: #fff;
+}
+user agent stylesheetdiv {
+    display: block;
+}
+Pseudo ::before element
+.rich_media_area_primary:before {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1px;
+    border-top: 1px solid #e5e5e5;
+    -webkit-transform-origin: 0 0;
+    transform-origin: 0 0;
+    -webkit-transform: scaleY(0.5);
+    transform: scaleY(0.5);
+    top: auto;
+    bottom: -2px;
+}
+
+.rich_media_content * {
+    max-width: 100%!important;
+    -webkit-box-sizing: border-box!important;
+    box-sizing: border-box!important;
+    word-wrap: break-word!important;
+}
+
+.rich_media_content {
+    overflow: hidden;
+    margin-top: 18px;
+    color: #3e3e3e;
+}
+
+.rich_media_content p {
+    clear: both;
+    min-height: 1em;
+    white-space: pre-wrap;
+}
+
+@media screen and (min-width: 1024px) {
+    .rich_media_meta {
+        max-width: none;
+    }
+    .rich_media_meta_text {
+        color: #8c8c8c;
+    }
+    .rich_media_meta {
+        float: left;
+        margin-right: 10px;
+        font-size: 15px;
+        max-width: none;
+    }
+
+    .rich_media_meta_list {
+        overflow: hidden;
+        line-height: 20px;
+    }
+    .rich_media_inner {
+        padding: 15px 10px;
+        word-wrap: break-word;
+        -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+        hyphens: auto;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .rich_media {
+        width: 740px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .rich_media_inner {
+        padding: 20px;
+        background-color: #fff;
+    }
+
+    .rich_media_meta {
+        max-width: none;
+    }
+
+    .rich_media_content {
+        min-height: 350px;
+    }
+
+    .rich_media_title {
+        padding-bottom: 10px;
+        margin-bottom: 5px;
+        border-bottom: 1px solid #e7e7eb
+    }
+
+    body {
+        background-color: #fff;
+    }
+
+    .discuss_container {
+        width: 740px;
+        margin-left: auto;
+        margin-right: auto
+    }
+
+    .line_tips {
+        background-color: #fff;
+    }
+
+    .rich_media_meta.nickname {
+        max-width: none;
+    }
+}
+
+@media screen and (min-width: 1025px) {
+    .rich_media_inner {
+        border: 1px solid #d9dadc;
+        border-top-width: 0;
+    }
+
+    body {
+        background-color: #e7e8eb;
+        font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif
+    }
+
+    .rich_media {
+        position: relative;
+    }
+
+    .rich_media_inner {
+        padding-bottom: 100px;
+    }
+
+    .rich_media_inner {
+        position: relative;
+    }
+}
+
+@media screen and (min-width: 0) and (min-resolution: 72dpi) {
+    .rich_media_content table {
+        table-layout: fixed !important
+    }
+
+    .rich_media_content td, .rich_media_content th {
+        width: auto !important
+    }
+}
+
+.rich_media_content em {
+    font-style: italic
+}
+
+.rich_media_tool_tips {
+    margin-top: 20px;
+    font-size: 14px
+}
+
+.rich_media_tool {
+    overflow: hidden;
+    padding: 18px 0;
+    line-height: 30px;
+    border-bottom: 1px solid #e7e7eb;
+}
+
+.rich_media_tool .link_primary {
+    color: #8c8c8c
+}
+
+.rich_media_tool .meta_primary {
+    float: left;
+    margin-right: 14px
+}
+
+.rich_media_tool .meta_extra {
+    float: right;
+    margin-left: 14px
+}
+
+.rich_media_tool .meta_praise {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    outline: 0;
+    margin-right: 6px;
+}
+
+.rich_media_tool .meta_praise_img {
+    margin-top: 8px;
+    width: 14px;
+    height: 14px;
+}
+
+.rich_media_tool .praise_num {
+    display: inline-block;
+    vertical-align: top;
+    min-width: 3em
+}
+
+.media_tool_meta {
+    font-size: 14px
+}
+
+.media_tool_meta i {
+    vertical-align: 0;
+    position: relative;
+    top: 1px;
+    margin-right: 3px
+}
+
+.line_tips_wrp {
+    margin-top: 20px;
+    text-align: center;
+    border-top: 1px dotted #a8a8a7;
+    line-height: 16px
+}
+
+.line_tips {
+    display: inline-block;
+    position: relative;
+    top: -10px;
+    padding: 0 16px;
+    font-size: 14px;
+    color: #cfcfcf;
+    background-color: #f8f7f5;
+    text-decoration: none
+}
+
+.line_tips_wrp {
+    margin-bottom: 10px;
+    text-align: left;
+    border-color: #e5e4e3
+}
+
+.line_tips_wrp .error_tips {
+    margin-left: .5em
+}
+
+.line_tips_wrp.normal .line_tips {
+    top: 10px
+}
+
+.line_tips_wrp.normal .error_tips {
+    margin-left: 0
+}
+
+.line_tips {
+    padding-left: 0;
+    padding-right: .5em;
+    color: #3e3e3e
+}
+
+.error_tips {
+    color: #8c8c8c
+}
+
+.icon_arrow_gray {
+    width: 7px
+}
+
+.icon_loading_white {
+    width: 16px
+}
+
+.icon_loading_white.icon_before {
+    margin-right: 1em
+}
+
+.icon_loading_white.icon_after {
+    margin-left: 1em
+}
+
+.rich_media_extra {
+    padding-bottom: 10px;
+    font-size: 14px;
+    position: relative
+}
+
+.rich_media_extra .extra_link {
+    display: block
+}
+
+.rich_media_extra img {
+    vertical-align: middle;
+    margin-top: -3px
+}

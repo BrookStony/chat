@@ -1,0 +1,32 @@
+<div class="page-header">
+    <h3>高级配置</h3>
+</div>
+
+<div ng-show="errors" class="alert alert-warning">
+    <button type="button" class="close" ng-click="errors=null">&times;</button>
+    <p ng-repeat="error in errors" ng-bind="error.message"></p>
+</div>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr>
+        <th>属性</th>
+        <th style="width: 300px">值</th>
+        <th style="width: 50px">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="setting in datas">
+        <td ng-bind="setting.name"></td>
+        <td>
+            <label ng-hide="setting.editable" ng-bind="setting.value"></label>
+            <input ng-show="setting.editable" type="text" ng-model="setting.value">
+            <button ng-show="setting.editable" ng-click="submit(setting)"><span class="glyphicon glyphicon-ok"></span>
+            </button>
+            <button ng-show="setting.editable" ng-click="refresh()"><span class="glyphicon glyphicon-ban-circle"></span>
+            </button>
+        </td>
+        <td><span class="glyphicon glyphicon-edit icon-btn" ng-click="setting.editable=true"></span></td>
+    </tr>
+    </tbody>
+</table>

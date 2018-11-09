@@ -1,0 +1,30 @@
+<div class="row">
+    <div class="col-md-2">
+        <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+                <li class="nav-header">基本</li>
+                <li ng-class="{ active: $state.includes('setting.account') }">
+                    <a href="#/setting/account" class="hidefocus" hidefocus="true">微信公众号</a>
+                </li>
+                <li ng-class="{ active: $state.includes('setting.personal') }">
+                    <a href="#/setting/personal" class="hidefocus" hidefocus="true">个人信息</a>
+                </li>
+                <li ng-show="isAdministrator()" class="nav-header">权限</li>
+                <li ng-show="isAdministrator()" ng-class="{ active: $state.includes('setting.user') }">
+                    <a href="#/setting/user" class="hidefocus" hidefocus="true">用户</a></li>
+                <!--<li><a href="javascript:void(0)">用户组</a></li>-->
+                <!--<li><a href="javascript:void(0)">角色</a></li>-->
+                <!--<li ng-show="isAdministrator()" class="nav-header">其它</li>-->
+                <!--<li ng-show="isAdministrator()"><a href="javascript:void(0)">系统日志</a></li>-->
+                <li ng-show="isAdministrator()" class="nav-header">系统</li>
+                <li ng-show="isAdministrator()" ng-class="{active: $state.includes('setting.settings')}">
+                    <a href="#/setting/settings">高级配置</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-10" style="padding: 0 15px 0 0">
+        <div class="well" ui-view></div>
+    </div>
+</div>

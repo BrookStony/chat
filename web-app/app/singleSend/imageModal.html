@@ -1,0 +1,50 @@
+<div id="imageDialog">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="cancel()">&times;</button>
+        <h3 class="modal-title">选择图片</h3>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-lg-2">
+                <ul class="list-group">
+                    <li class="list-group-item group-menu current_group" ng-click="refresh()" onclick="angular.element(this).scope().addClass(this)">
+                        <a href="javascript: void (0)">未分组 <span class="badge" ng-bind="withOutGroupPictures"></span>
+                        </a>
+                    </li>
+                    <li class="list-group-item group-menu" ng-repeat="group in pictureGroups" ng-click="refresh(group.id);" onclick="angular.element(this).scope().addClass(this)">
+                        <a href="javascript: void (0)">
+                            {{group.name}}
+                            <span class="badge" ng-bind="group.size"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-lg-10">
+                <div class="row">
+                    <div class="col-lg-3" ng-repeat="picture in pictures" style="margin:0px 0px 10px">
+                        <div class="thumb" ng-click="showCover(picture,$index)" >
+                            <div class="picture" style="position: relative">
+                                <img ng-src="{{picture.url}}" width="100%" height="117px">
+                                <div class="select_inner select_inner{{$index}}"></div>
+                                <div class="cover cover{{$index}}">
+                                </div>
+                            </div>
+                            <div style="text-align:center;height:30px;line-height:30px">
+                                <span ng-bind="picture.name | shortName"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <pagination total-items="totalItems" page="picturePage.currentPage" items-per-page="max" max-size="8"></pagination>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer" style="text-align: center;">
+        <button class="btn btn-success" ng-disabled="selectedPicture==null" ng-click="ok()">确定</button>
+        <button class="btn btn-default" ng-click="cancel()">取消</button>
+    </div>
+</div>

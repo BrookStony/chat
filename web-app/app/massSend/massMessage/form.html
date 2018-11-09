@@ -1,0 +1,179 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">群发功能</h1>
+    </div>
+</div>
+<div class="btn-toolbar">
+    <div class="title_tab">
+        <ul class="tab_navs title_tab">
+            <li class="tab_nav first js_top  selected">
+                <a href="#/massSend/send" class="hidefocus" hidefocus="true">
+                    新建群发消息
+                </a>
+            </li>
+            <li class="tab_nav">
+                <a href="#/massSend/list" class="hidefocus" hidefocus="true">
+                    已发送
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <div class="msg_target">
+            <label>群发对象</label>
+            <div class="target">
+                <div class="send_target">
+                    <select class="form-control" ng-model="sendTarget" ng-options="target.label for target in massSendTargets">
+                    </select>
+                </div>
+                <div class="member_group" style="float: left" ng-show="sendTarget.id==1">
+                    <select class="form-control" ng-model="sendGroup" ng-options="memberGroup.name for memberGroup in memberGroups">
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="msg_sex">
+            <label>性别</label>
+            <div class="sex">
+                <select class="form-control" ng-model="sendSexType" ng-options="sex.label for sex in massSendSexTypes"></select>
+            </div>
+        </div>
+        <div style="float: left;" >
+            <label>群发地区</label>
+            <div class="msg_location">
+                <div class="country">
+                    <select class="form-control" ng-model="loc.country" ng-options="country.name for country in countries">
+						<option value="">国家</option>
+                    </select>
+                </div>
+                <div class="province" ng-if="provinces">
+                    <select class="form-control" ng-model="loc.province" ng-options="province.name for province in provinces">
+						<option value="">省份</option>
+                    </select>
+                </div>
+                <div class="city" ng-if="cities">
+                    <select class="form-control" ng-model="loc.city" ng-options="city.name for city in cities">
+						<option value="">城市</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: 20px">
+    <div class="col-lg-8">
+       <div class="mass_send_message_tab">
+            <ul class="tab_navs" style="line-height: 38px">
+                <li class="tab_nav tab_text width5" title="文字">
+                    <a href="javascript:void(0)" ng-click="showTextArea()">&nbsp;<i class="fa fa-pencil"></i></a>
+                </li>
+                <li class="tab_nav tab_img width5" title="图片">
+                    <a href="javascript:void(0)" ng-click="openImageModal()">&nbsp;<i class="fa fa-picture-o"></i></a>
+                </li>
+                <li class="tab_nav tab_audio width5" title="语音">
+                    <a href="javascript:void(0)" ng-click="openModal()">&nbsp;<i class="fa fa-microphone-slash"></i></a>
+                </li>
+                <li class="tab_nav tab_video width5" title="视频">
+                    <a href="javascript:void(0)" ng-click="openModal()">&nbsp;<i class="fa fa-video-camera"></i></a>
+                </li>
+                <li class="tab_nav tab_article width5" title="图文消息">
+                    <a href="javascript:void(0)" ng-click="openArticleModal()">&nbsp;<i class="fa fa-file-image-o"></i></a>
+                </li>
+            </ul>
+            <div class="tab_panel">
+                <div class="tab_content" ng-show="messageType=='TEXT'">
+                    <div class="emotion_editor">
+                        <div class="edit_area js_editorArea" ng-maxlength="600" ng-model="sendText" contenteditable="true" style="overflow-y: auto;overflow-x: hidden">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab_content" ng-show="messageType=='IMAGE'">
+                    <div class="js_imageArea">
+                        <div class="msgSender_media_1_2">
+                            <div class="appmsgSendedItem simple_img">
+                                <a target="_blank" href="javascript:void(0)">
+                                    <img class="icon" width="80px" height="80px" ng-src="{{imageUrl}}" alt="" ng-show="imageUrl">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab_content" ng-show="messageType=='AUDIO'">
+                    <div class="js_audioArea">
+                        <div class="msgSender_media_1_2">
+                            <div class="appmsgSendedItem simple_img">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab_content" ng-show="messageType=='VIDEO'">
+                    <div class="js_videoArea">
+                        <div class="msgSender_media_1_2">
+                            <div class="appmsgSendedItem simple_img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab_content" ng-show="messageType=='NEWS'">
+                    <div class="article_preview_area" ng-show="article.articleItems.length == 0">
+                        <div id="articlePreview" class="article_preview">
+                            <div class="article_content">
+                                <h4 class="article_title"><a href="articleView?id={{article.id}}" target="_blank">{{article.title}}</a></h4>
+                                <div class="article_date">
+                                    <span ng-bind="article.dateCreated"></span>
+                                </div>
+                                <div class="article_img_preview">
+                                    <img class="article_cover_img" ng-show="article.coverImage" ng-src="{{article.coverImage.url}}" alr="封面图片">
+                                    <i class="article_cover_text" ng-show="!article.coverImage">封面图片</i>
+                                </div>
+                                <p class="article_describe" ng-bind="article.description"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mul_article_preview_area" ng-show="article.articleItems">
+                        <div class="mul_article_preview">
+                            <div class="mul_article_content">
+                                <div class="main_article_date">
+                                    <span ng-bind="article.dateCreated"></span>
+                                </div>
+                                <div class="main_article">
+                                    <div class="article_img_preview">
+                                        <img class="article_cover_img" ng-show="article.coverImage" ng-src="{{article.coverImage.url}}" alr="封面图片">
+                                        <span class="article_cover_text" ng-show="!article.coverImage">封面图片</span>
+                                    </div>
+                                    <div class="main_article_title"><a href="articleView?id={{article.id}}" target="_blank" ng-bind="article.title"></a></div>
+                                </div>
+                                <div class="article_item" ng-repeat="articleItem in article.articleItems">
+                                    <div class="article_item_title">
+                                        <h4><a href="articleView?item_id={{articleItem.id}}" target="_blank" ng-bind="articleItem.title"></a></h4>
+                                    </div>
+                                    <div class="article_item_img_preview" >
+                                        <img ng-src="{{articleItem.coverImage.url}}" style="width: 100%;height: 100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: 20px;margin-bottom: 30px">
+    <div class="col-lg-12">
+        <button class="btn btn-success" ng-click="submit()" style="width: 10%">群发</button>
+		<div class="bubble_tips bubble_left warn">
+            <div class="bubble_tips_inner" ng-if="'SERVICE'==accountType">
+                <p class="mass_send_tips">你本月还能群发 <em id="leftNum">{{remainCount}}</em> 条消息</p>
+            </div>
+			<div class="bubble_tips_inner" ng-if="'SUBSCRIBE'==accountType">
+                <p class="mass_send_tips">你今天还能群发 <em id="leftNum">{{remainCount}}</em> 条消息</p>
+            </div>
+            <i class="bubble_tips_arrow out"></i>
+            <i class="bubble_tips_arrow in"></i>
+        </div>
+    </div>
+</div>

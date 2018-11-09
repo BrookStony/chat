@@ -1,0 +1,59 @@
+<ul class="breadcrumb" style="margin-bottom: 10px">
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
+                class="glyphicon glyphicon-user"></i> {{currentAccount.username}} <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+            <li class="dropdown-header">推广账户</li>
+            <li>
+                <a>
+                    <span class="glyphicon glyphicon-filter"></span> 过滤:
+                    <input type="text" onclick="event.stopPropagation()" ng-model="accountFilter">
+                </a>
+            </li>
+            <li ng-repeat="a in accounts|filter:accountFilter">
+                <a href="javascript:void(0)" ng-click="selectAccount(a.id)">
+                    <span class="glyphicon glyphicon-user"></span>
+                    {{a.username}}</a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown" ng-show="currentAccount.id">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="glyphicon glyphicon-th-list"></i> {{currentCampaign.name}} <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li class="dropdown-header">推广计划</li>
+            <li>
+                <a>
+                    <span class="glyphicon glyphicon-filter"></span> 过滤:
+                    <input type="text" onclick="event.stopPropagation()" ng-model="campaignFilter">
+                </a>
+            </li>
+            <li ng-repeat="c in campaigns|filter:campaignFilter">
+                <a href="javascript:void(0)" ng-click="selectCampaign(c.id,$stateParams.accountId)">
+                    <span class="glyphicon glyphicon-th-list"></span>
+                    {{c.name}}</a>
+            </li>
+        </ul>
+    </li>
+    <li class="dropdown" ng-show="currentCampaign.id">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-leaf"></span> {{currentAdGroup.name}} <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu">
+            <li class="dropdown-header">推广单元</li>
+            <li>
+                <a>
+                    <span class="glyphicon glyphicon-filter"></span> 过滤:
+                    <input type="text" onclick="event.stopPropagation()" ng-model="adGroupFilter">
+                </a>
+            </li>
+            <li ng-repeat="ag in adGroups|filter:adGroupFilter">
+                <a href="javascript:void(0)"
+                   ng-click="selectAdGroup(ag.id,$stateParams.campaignId,$stateParams.accountId)"><i
+                        class="glyphicon glyphicon-leaf"></i>
+                    {{ag.name}}</a>
+            </li>
+        </ul>
+    </li>
+</ul>

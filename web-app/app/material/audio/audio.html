@@ -1,0 +1,86 @@
+<div class="title_tab">
+    <ul class="tab_navs title_tab">
+        <li class="tab_nav first js_top">
+            <a href="#/material/article" class="hidefocus" hidefocus="true">
+                图文消息
+            </a>
+        </li>
+        <li class="tab_nav">
+            <a href="#/material/picture" class="hidefocus" hidefocus="true">
+                图片
+            </a>
+        </li>
+        <li class="tab_nav selected">
+            <a href="#/material/audio" class="hidefocus" hidefocus="true">
+                语音
+            </a>
+        </li>
+        <li class="tab_nav">
+            <a href="#/material/video" class="hidefocus" hidefocus="true">
+                视频
+            </a>
+        </li>
+    </ul>
+</div>
+
+<div style="margin-top: 10px">
+    <div class="row">
+        <div class="col-lg-11">
+            <form enctype="multipart/form-data">
+                <div class="form-group">
+                    <input id="importFile" name="audio" type="file" multiple=true data-preview-file-type="audio">
+                </div>
+            </form>
+            <div class="form-group">
+                <button type="button" class="btn btn-primary" ng-click="ajaxFileUpload();">
+                    <span class="glyphicon glyphicon-upload"></span>上传
+                </button>
+                <!--<span>大小: 不超过5M,    长度: 不超过60s,    格式: mp3, wma, wav, amr  </span>-->
+            </div>
+        </div>
+    </div>
+
+    <div ng-show = "hasAudio">
+        <div class="row">
+            <div class="col-lg-3" ng-repeat="audio in audios">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div style="margin-left: 10px;margin-right: 10px;" >
+                                <audio>
+                                    <source src="">
+                                </audio>
+                                <!--<img ng-src="file:///{{picture.path}}" class="img-responsive" alt="">-->
+                                <p>{{ audio.name}}</p>
+                                <p>{{ audio.size/1024}}kb</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="btn-group btn-group-justified">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default" ng-click="down(audio.path, audio.name, audio.id)"><span class="glyphicon glyphicon-save"></span></button>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default" ng-click="remove(audio.path,audio.name, audio.id)"><span class="glyphicon glyphicon-trash"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-show="!hasAudio" class="text-center col-lg-12">
+            <div class="alert alert-info"><h4>暂无数据</h4></div>
+        </div>
+    </div>
+</div>
+<script>
+    $("#importFile").fileinput({
+        overwriteInitial: false,
+        showUpload: false,
+        showCaption: false,
+        maxFileSize: 1024*8,
+        allowedPreviewTypes: ['audio'],
+        browseLabel: '选择语音'
+    });
+</script>

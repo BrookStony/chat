@@ -1,0 +1,22 @@
+<div class="mul_article_preview">
+    <div class="mul_article_content">
+        <div class="main_article_date">
+            <span ng-bind="article.dateCreated"></span>
+        </div>
+        <div class="main_article">
+            <div class="article_img_preview">
+                <img class="article_cover_img" ng-show="article.coverImage" ng-src="{{article.coverImage.url}}" alr="封面图片">
+                <span class="article_cover_text" ng-show="!article.coverImage">封面图片</span>
+            </div>
+            <div class="main_article_title"><a href="articleView?id={{article.id}}" target="_blank" ng-bind="article.title"></a></div>
+        </div>
+        <div class="article_item" ng-repeat="articleItem in article.articleItems">
+            <div class="article_item_title">
+                <h4><a href="articleView?item_id={{articleItem.id}}" target="_blank" ng-bind="articleItem.title"></a></h4>
+            </div>
+            <div class="article_item_img_preview" >
+                <img ng-src="{{articleItem.coverImage.url}}" style="width: 100%;height: 100%">
+            </div>
+        </div>
+    </div>
+</div>

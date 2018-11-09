@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">用户管理</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="btn-toolbar" style="margin-top: 0">
+    <div class="btn-group">
+        <button ng-click="create()" class="btn btn-success">
+            <i class="glyphicon glyphicon-plus"></i> 新增用户
+        </button>
+    </div>
+    <div class="btn-group">
+        <button ng-click="refreshMember()" class="btn btn-default">
+            <i class="glyphicon glyphicon-refresh"></i> 同步
+        </button>
+    </div>
+    <div class="btn-group pull-right">
+        <div class="input-group" style="width: 200px">
+            <input ng-model="filter" type="text" ui-blur="refresh()" class="form-control" placeholder="名称..."
+                   style="width: 200px;display: inline">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+        </div>
+    </div>
+</div>
+<table id="member-grid" class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr>
+        <th style="text-align: center;width: 15px">
+            <input type="checkbox" ng-click="toggleCheckedAll()" ng-checked="checked"/>
+        </th>
+        <th sorting="sort" column="nickName" style="width: 200px">昵称</th>
+        <th sorting="sort" column="name" style="width: 100px">姓名</th>
+        <th sorting="sort" column="sex" style="width: 60px">性别</th>
+        <th sorting="sort" column="city" style="width: 100px">城市</th>
+        <th sorting="sort" column="province">省份</th>
+        <th sorting="sort" column="phone">电话</th>
+        <th sorting="sort" column="email">邮箱</th>
+        <th sorting="sort" column="qq">QQ</th>
+        <th sorting="sort" column="group">用户组</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="member in datas">
+        <td>
+            <input type="checkbox" ng-model="member.checked"/>
+        </td>
+        <td>
+            <div class="user_info">
+                <a href="#/singleSend?userId={{member.id}}" target="_blank" class="avatar"><img src="{{member.headimgurl}}"></a>
+                <span ng-bind="member.nickName"></span>
+            </div>
+        </td>
+        <td ng-bind="member.name"></td>
+        <td ng-bind="member.sex | sex "></td>
+        <td ng-bind="member.city"></td>
+        <td ng-bind="member.province"></td>
+        <td ng-bind="member.phone"></td>
+        <td ng-bind="member.email"></td>
+        <td ng-bind="member.qq"></td>
+        <td ng-bind="member.group.name"></td>
+        <td>
+            <a href="#/member/edit/{{ member.id }}" style="padding-left: 5px;" title="编辑">
+                <i class="glyphicon glyphicon-edit"></i>
+            </a>
+            <a href="javascript:void(0)" style="padding-left: 5px;" title="删除">
+                <i class="glyphicon glyphicon-remove" ng-click="remove(member.id)"></i>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<pagination total-items="totalItems" page="currentPage" items-per-page="max" max-size="10"></pagination>

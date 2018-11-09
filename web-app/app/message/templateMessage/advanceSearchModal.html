@@ -1,0 +1,42 @@
+<div id="advanceSearchDialog">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="close();">&times;</button>
+        <h4 class="modal-title"><span class="glyphicon glyphicon-eye-open"></span> 高级查找</h4>
+    </div>
+    <div class="modal-body">
+        <form name="form" method="post" novalidate class="form-horizontal" autocomplete="off">
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="openId">
+                    微信标识
+                    <span class="required-indicator">*</span>
+                </label>
+
+                <div class="col-md-5">
+                    <input class="form-control" type="text" id="openId" placeholder="微信标识" required=""
+                           ng-model="member.openId">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="col-md-2 control-label" for="openId">
+                    时间
+                    <span class="required-indicator">*</span>
+                </label>
+
+                <div class="col-md-5">
+                    <div id="dateRangeSelect"
+                         class="pull-left date-range-picker" options="dateRangeSelectOptions"
+                         callback="dateRangeSelectCallback"
+                         style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc;font-size: 16px;">
+                        <i class="glyphicon glyphicon-calendar"></i>
+                        <span></span> <b class="caret"></b>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="ok();"><span class="glyphicon glyphicon-upload"></span> 确定</button>
+        <button type="button" class="btn btn-warning" ng-click="close();"><span class="glyphicon glyphicon-remove"></span> 取消</button>
+    </div>
+</div>

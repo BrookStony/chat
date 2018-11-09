@@ -1,0 +1,178 @@
+<div class="title_tab">
+    <ul class="tab_navs title_tab">
+        <li class="tab_nav first js_top selected">
+            <a href="#/material/article?accountId={{accountId}}" class="hidefocus" hidefocus="true">图文消息</a>
+        </li>
+        <li class="tab_nav">
+            <a href="#/material/picture?accountId={{accountId}}" class="hidefocus" hidefocus="true">图片</a>
+        </li>
+        <li class="tab_nav">
+            <a href="#/material/audio?accountId={{accountId}}" class="hidefocus" hidefocus="true">语音</a>
+        </li>
+        <li class="tab_nav">
+            <a href="#/material/video?accountId={{accountId}}" class="hidefocus" hidefocus="true">视频</a>
+        </li>
+    </ul>
+</div>
+<div>
+    <ol class="breadcrumb">
+        <li><a href="#/material?accountId={{accountId}}" style= 'color:#0072bc'>图文消息</a></li>
+        <li class="active">新建多图文消息</li>
+    </ol>
+</div>
+
+<div style="margin-top: 30px">
+    <div id="articleFormContainer" class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-2">
+            <div class="mul_article_preview_area">
+                <div class="mul_article_preview">
+                    <div class="mul_article_content">
+                        <div class="main_article_date">
+                            <span></span>
+                        </div>
+                        <div class="main_article">
+                            <a href="javascript:void(0);" >
+                                <div class="main_article_edit_bar">
+                                    <span class="glyphicon glyphicon-pencil" title="修改" ng-click="showArticleEditForm()"></span>
+                                </div>
+                                <div class="article_img_preview">
+                                    <img class="article_cover_img" ng-show="article.coverImage" ng-src="{{article.coverImage.url}}" alr="封面图片">
+                                    <span class="article_cover_text" ng-show="!article.coverImage">封面图片</span>
+                                </div>
+                                <div class="main_article_title" ng-show="!article.title"><a href="javascript:void (0)">标题</a></div>
+                                <div class="main_article_title" ng-show="article.title"><a href="javascript:void (0)" ng-bind="article.title"></a></div>
+                            </a>
+                        </div>
+                        <div class="article_items">
+                            <div ng-repeat="articleItem in articleItems">
+                                <a href="javascript:void(0);" >
+                                    <div class="article_item_edit_bar">
+                                        <span class="glyphicon glyphicon-pencil" title="修改" ng-click="showArticleItemForm($index)">&nbsp;</span>
+                                        <span class="glyphicon glyphicon-trash" title="删除" ng-click="deleteArticleItem($index)">&nbsp;</span>
+                                    </div>
+                                    <div class="article_item">
+                                        <div class="article_item_title">
+                                            <h4 ng-show="!articleItem.title">标题</h4>
+                                            <h4 ng-bind="articleItem.title"></h4>
+                                        </div>
+                                        <div class="article_item_img_preview">
+                                            <img ng-show="articleItem.coverImage" ng-src="{{articleItem.coverImage.url}}" class="article_item_cover_img">
+                                            <span ng-show="!articleItem.coverImage" class="article_item_cover_text">缩略图</span>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="add_article_item" style="height: 100px">
+                            <div class="add_new_article_item">
+                                <a href="javascript:void (0)" title="增加" style="color:#0072bc" ng-click="addArticleItem()"><span class="glyphicon glyphicon-plus"></span>增加一条</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="articleFormDispaly" class="col-lg-6 col-md-offset-1">
+            <div id="articleEditorArea" class="article_editor_area">
+                <div class="inner">
+                    <form role="form" name="articleForm" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="title">标题(*必填，长度不能超过64个字符)</label>
+                            <input class="form-control" id="articleTitle" name="title" ng-model="article.title" ng-maxlength="64" placeholder="Enter title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="author">作者(可选，长度不能超过8个字符)</label>
+                            <input class="form-control" id="articleAuthor" placeholder="Enter author" ng-model="article.author" ng-maxlength="8">
+                        </div>
+                        <div class="form-group">
+                            <label for="coverImage">封面</label>
+                            <p>(图片建议尺寸:900像素 * 500像素)</p>
+                        <span class="btn btn-success fileinput-button">
+                             <i class="glyphicon glyphicon-upload"></i>
+                             <span>上传</span>
+                            <input id="articleCoverImage" type="file" name="picture" accept="image/*" onchange="angular.element(this).scope().fileOnChange('articleCoverImage')">
+                        </span>
+                        <span class="btn btn-default" ng-click="openImgModal('articleCoverImage')">
+                            <i class="glyphicon glyphicon-picture"></i>
+                            <span>从图片库中选择</span>
+                        </span>
+                        <p ng-show="article.coverImage" style="margin-top: 10px;" class="preview">
+                            <img class="upload_img_preview" ng-src="{{article.coverImage.url}}">
+                            <span><a href="javascript: void(0)" ng-click="removeCoverImage()" style="vertical-align: bottom;color: blue">删除</a></span>
+                        </p>
+                        </div>
+                        <div class="form-group">
+                            <label>正文</label>
+                            <div um-editor id="articleEditor" style="height: 270px" ng-model="article.content"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="originalUrl">
+                                原文链接（选填）
+                            </label>
+                            <input class="form-control" id="articleOriginalUrl" placeholder="原文链接" ng-model="article.originalUrl">
+                        </div>
+                        <!--<button type="submit" class="btn btn-success" ng-click="submit()" ng-disabled="articleForm.$invalid">保存</button>-->
+                    </form>
+                </div>
+                <i class="arrow arrow_out" style="margin-top: 0px;"></i>
+                <i class="arrow arrow_in" style="margin-top: 0px;"></i>
+            </div>
+        </div>
+
+        <div ng-show="articleItemFormDispaly" class="col-lg-6 col-md-offset-1">
+            <div id="articleItemEditorTop" style="height: 195px"></div>
+            <div id="articleItemEditorArea" class="article_item_editor_area">
+                <div class="inner">
+                    <form role="form" name="articleItemForm" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <label for="title">标题(*必填，长度不能超过64个字符)</label>
+                            <input class="form-control" id="title" placeholder="Enter title" name="title" ng-model="articleItems[num].title" ng-maxlength="64" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="author">作者(可选，长度不能超过8个字符)</label>
+                            <input class="form-control" id="author" placeholder="Enter author" ng-model="articleItems[num].author" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="coverImage">封面</label><p>(图片建议尺寸:900像素 * 500像素)</p>
+                        <span class="btn btn-success fileinput-button">
+                             <i class="glyphicon glyphicon-upload"></i>
+                             <span>上传</span>
+                            <input id="coverImage" type="file" name="picture" accept="image/*" onchange="angular.element(this).scope().fileOnChange('coverImage')">
+                        </span>
+                        <span class="btn btn-default" ng-click="openImgModal('coverImage')">
+                            <i class="glyphicon glyphicon-picture"></i>
+                            <span>从图片库中选择</span>
+                        </span>
+                        <p ng-show="articleItems[num].coverImage" style="margin-top: 10px;" class="preview">
+                            <img class="upload_img_preview" ng-src="{{articleItems[num].coverImage.url}}">
+                            <span><a href="javascript: void(0)" ng-click="removeItemCoverImage()" style="vertical-align: bottom;color: blue">删除</a></span>
+                        </p>
+                        </div>
+                        <div class="form-group">
+                            <label>正文</label>
+                            <div um-editor id="articleItemEditor" style="height: 270px" ng-model="articleItems[num].content"></div>
+                        </div>
+                        <div class="form-group">
+                            <label for="originalUrl">
+                                原文链接（选填）
+                            </label>
+                            <input class="form-control" id="originalUrl" placeholder="原文链接" ng-model="articleItems[num].originalUrl">
+                        </div>
+                        <!--<button type="submit" class="btn btn-success" ng-click="submit()" ng-disabled="articleForm.$invalid">保存</button>-->
+                    </form>
+                </div>
+                <i class="arrow arrow_out" style="margin-top: 0px;"></i>
+                <i class="arrow arrow_in" style="margin-top: 0px;"></i>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="buttonsContainer">
+        <div class="col-lg-12" style="text-align: center;padding-bottom: 20px;">
+            <hr>
+            <button type="submit" class="btn btn-success" ng-click="submit()">保存</button>
+            <a href="#/material?accountId={{accountId}}" class="btn btn-default">取消</a>
+        </div>
+    </div>
+</div>

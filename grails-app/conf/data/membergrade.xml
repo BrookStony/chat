@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<membergrades>
+    <membergrade grade="1" name="一级" score="0" image="" imageAmount="1">
+        一级会员
+    </membergrade>
+    <membergrade grade="2" name="二级" score="50" image="" imageAmount="2">
+        二级会员
+    </membergrade>
+    <membergrade grade="3" name="三级" score="100" image="" imageAmount="3">
+        三级会员
+    </membergrade>
+    <membergrade grade="4" name="四级" score="200" image="" imageAmount="1">
+        四级会员
+    </membergrade>
+    <membergrade grade="5" name="五级" score="400" image="" imageAmount="2">
+        五级会员
+    </membergrade>
+    <membergrade grade="6" name="六级" score="800" image="" imageAmount="3">
+        六级会员
+    </membergrade>
+    <membergrade grade="7" name="七级" score="1600" image="" imageAmount="1">
+        七级会员
+    </membergrade>
+    <membergrade grade="8" name="八级" score="3200" image="" imageAmount="2">
+        八级会员
+    </membergrade>
+    <membergrade grade="9" name="九级" score="6400" image="" imageAmount="3">
+        九级会员
+    </membergrade>
+    <membergrade grade="10" name="十级" score="12800" image="" imageAmount="1">
+        十级会员
+    </membergrade>
+</membergrades>

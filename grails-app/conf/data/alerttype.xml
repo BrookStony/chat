@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<alerttypes>
+    <alerttype name="account1001" label="帐号余额不足" severity="CRITICAL" cronTrigger="每天">
+        账户[${account.username}]余额不足，当前余额：${account.balance}元，每日预算：${account.budget}元。
+    </alerttype>
+    <alerttype name="account1002" label="剩余消耗天数不足7天" severity="CRITICAL" cronTrigger="每天">
+        账户[${account.username}]剩余消耗天数${days}天，当前余额：${account.balance}元，每日平均消费：${avgCost}元。
+    </alerttype>
+    <alerttype name="account1003" label="账户日消耗变动大于30%" severity="CRITICAL" cronTrigger="每天">
+        账户[${account.username}]日消耗变动大于30%, 日消耗: ${costChange}。
+    </alerttype>
+    <alerttype name="account1004" label="百度推广API配额不足" severity="CRITICAL" cronTrigger="每天">
+        账户[${account.username}]百度推广API配额不足，无法使用API提供的服务。百度推广系统将在周六重新分配配额。
+    </alerttype>
+    <alerttype name="campaign2001" label="推广计划无法全天展示（推广计划预算不足）" severity="CRITICAL" cronTrigger="每天">
+        推广计划[${campaign.name}]无法全天展示，推广计划预算不足，每日预算：${campaign.budget}元，当日消费${todayCost}元，账户：${account.username}。
+    </alerttype>
+    <alerttype name="campaign2002" label="推广计划无法全天展示（账户计划预算不足）" severity="CRITICAL" cronTrigger="每天">
+        推广计划[${campaign.name}]无法全天展示，账户计划预算不足，每日预算：${account.budget}元，当日消费${todayCost}元，账户：${account.username}。
+    </alerttype>
+    <alerttype name="creative3001" label="广告语句据登" severity="CRITICAL" cronTrigger="每小时" enable="false">
+        广告语句[${creative.title}]据登，推广单元：${adGroup.name}，推广计划：${campaign.name}，账户：${account.username}。
+    </alerttype>
+    <alerttype name="creative3002" label="广告语句不宜推广" severity="CRITICAL" cronTrigger="每小时">
+        广告语句[${creative.title}]不宜推广，推广单元：${adGroup.name}，推广计划：${campaign.name}，账户：${account.username}。
+    </alerttype>
+    <alerttype name="creative3003" label="广告语句计算机搜索无效" severity="CRITICAL" cronTrigger="每天" enable="false">
+        广告语句[${creative.title}]计算机搜索无效，推广单元：${adGroup.name}，推广计划：${campaign.name}，账户：${account.username}。
+    </alerttype>
+    <alerttype name="keyword4001" label="关键词计算机搜索无效" severity="CRITICAL" cronTrigger="每天" enable="false">
+        关键词[${keyword.keyword}]计算机搜索无效，推广单元：${adGroup.name}，推广计划：${campaign.name}，账户：${account.username}。
+    </alerttype>
+    <alerttype name="bidding6001" label="竞价词竞价成功" severity="CLEARED" cronTrigger="每小时" enable="false">
+        ${number}个竞价词竞价成功，账户：${account.username}。
+    </alerttype>
+    <alerttype name="bidding6002" label="竞价词竞价失败，关键词暂停推广" severity="CRITICAL" cronTrigger="每小时" enable="false">
+        ${number}个竞价词竞价失败，关键词暂停推广，账户：${account.username}。
+    </alerttype>
+    <alerttype name="bidding6003" label="竞价词竞价失败，出价超出上限" severity="CRITICAL" cronTrigger="每小时" enable="false">
+        ${number}个竞价词竞价失败，出价超出上限，账户：${account.username}。
+    </alerttype>
+    <alerttype name="bidding6004" label="竞价词竞价失败，出价低于下限" severity="CRITICAL" cronTrigger="每小时" enable="false">
+        ${number}个竞价词竞价失败，出价低于下限，账户：${account.username}。
+    </alerttype>
+    <alerttype name="bidding6005" label="竞价词竞价失败，竞价时发生异常" severity="CRITICAL" cronTrigger="每小时" enable="false">
+        ${number}个竞价词竞价失败，竞价时发生异常， 账户：${account.username}。
+    </alerttype>
+    <alerttype name="bidding6006" label="竞价词竞价失败，抓取排名时发生异常" severity="CRITICAL" cronTrigger="每小时" enable="false">
+        ${number}个竞价词竞价失败，抓取排名时发生异常，账户：${account.username}。
+    </alerttype>
+</alerttypes>

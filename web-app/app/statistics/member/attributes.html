@@ -1,0 +1,99 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">用户统计</h1>
+    </div>
+</div>
+<div class="btn-toolbar">
+    <div class="title_tab">
+        <ul class="tab_navs title_tab">
+            <li data-id="total" class="tab_nav first js_top" ng-click="selectStatType('growth')"><a href="javascript:void(0);">用户增长</a></li>
+            <li data-id="today" class="tab_nav selected" ng-click="selectStatType('attributes')"><a href="javascript:void(0);">用户属性</a></li>
+        </ul>
+    </div>
+</div>
+<div class="stat_chat">
+    <div class="mod_basic">
+        <div class="title">
+            <h3>用户属性</h3>
+        </div>
+        <div class="content" id="chat_map">
+            <h4 class="sub_title">性别分布</h4>
+            <div class="sub_content">
+                <div class="time-chart" ng-show="sexChart">
+                    <div class="highcharts" id="sexChart" ng-model="sexChart" style="height: 200px;width: 887px"></div>
+                </div>
+            </div>
+            <hr class="split">
+            <h4 class="sub_title">语言分布</h4>
+            <div class="sub_content">
+                <div class="time-chart" ng-show="languageChart">
+                    <div class="highcharts" id="languageChart" ng-model="languageChart" style="height: 200px;width: 887px"></div>
+                </div>
+            </div>
+            <hr class="split">
+            <h4 class="sub_title">省份分布</h4>
+            <div class="sub_content">
+                <div class="map_chart">
+                    <div class="chart_wrap" ng-show="provincesMap">
+                        <div class="highmaps" id="provincesMap" ng-model="provincesMap" style="height: 600px;width: 600px"></div>
+                    </div>
+                    <div class="map_patch"></div>
+                    <div class="map_colors">
+                        <div class="colors_bar"></div>
+                        <div class="number_max" id="number_max">13</div>
+                        <div class="number_min" id="number_min">0</div>
+                    </div>
+                </div>
+                <div class="map_rank">
+                    <div id="table_list_province" class="gri_wrapper"><table class="gri_stable" id="table_list_province_table"><colgroup span="3"><col class="gri_AttrValue"><col class="gri_UserCount"><col class="gri_percent" style="width: 70%;"></colgroup><thead><tr><th name="AttrValue" class="" style="text-align: left;">省份</th><th name="UserCount" class="hover enable" style="text-align: right;">用户数<i class="icon-order-hover"></i></th><th name="percent" class="" style="text-align: right;"> </th></tr></thead><tbody><tr><td><div style="width: 100%; height: 100%;text-align:left;">上海</div></td><td><div style="width: 100%; height: 100%;text-align:right;">13</div></td><td><div style="width: 100%; height: 100%;text-align:left;"><span><div class="ui_progress"><div style="width:53%; background:#44B549" class="ui_progress_bar"></div></div></span></div></td></tr><tr><td><div style="width: 100%; height: 100%;text-align:left;">北京</div></td><td><div style="width: 100%; height: 100%;text-align:right;">4</div></td><td><div style="width: 100%; height: 100%;text-align:left;"><span><div class="ui_progress"><div style="width:17%; background:#44B549" class="ui_progress_bar"></div></div></span></div></td></tr><tr><td><div style="width: 100%; height: 100%;text-align:left;">湖南省</div></td><td><div style="width: 100%; height: 100%;text-align:right;">1</div></td><td><div style="width: 100%; height: 100%;text-align:left;"><span><div class="ui_progress"><div style="width:5%; background:#44B549" class="ui_progress_bar"></div></div></span></div></td></tr><tr><td><div style="width: 100%; height: 100%;text-align:left;">甘肃省</div></td><td><div style="width: 100%; height: 100%;text-align:right;">1</div></td><td><div style="width: 100%; height: 100%;text-align:left;"><span><div class="ui_progress"><div style="width:5%; background:#44B549" class="ui_progress_bar"></div></div></span></div></td></tr><tr><td><div style="width: 100%; height: 100%;text-align:left;">新疆</div></td><td><div style="width: 100%; height: 100%;text-align:right;">1</div></td><td><div style="width: 100%; height: 100%;text-align:left;"><span><div class="ui_progress"><div style="width:5%; background:#44B549" class="ui_progress_bar"></div></div></span></div></td></tr><tr><td><div style="width: 100%; height: 100%;text-align:left;">未知</div></td><td><div style="width: 100%; height: 100%;text-align:right;">1</div></td><td><div style="width: 100%; height: 100%;text-align:left;"><span><div class="ui_progress"><div style="width:5%; background:#44B549" class="ui_progress_bar"></div></div></span></div></td></tr><tr><td><div style="width: 100%; height: 100%;text-align:left;">安徽省</div></td><td><div style="width: 100%; height: 100%;text-align:right;">1</div></td><td><div style="width: 100%; height: 100%;text-align:left;"><span><div class="ui_progress"><div style="width:5%; background:#44B549" class="ui_progress_bar"></div></div></span></div></td></tr><tr><td><div style="width: 100%; height: 100%;text-align:left;">广东省</div></td><td><div style="width: 100%; height: 100%;text-align:right;">1</div></td><td><div style="width: 100%; height: 100%;text-align:left;"><span><div class="ui_progress"><div style="width:5%; background:#44B549" class="ui_progress_bar"></div></div></span></div></td></tr><tr><td><div style="width: 100%; height: 100%;text-align:left;">重庆</div></td><td><div style="width: 100%; height: 100%;text-align:right;">1</div></td><td><div style="width: 100%; height: 100%;text-align:left;"><span><div class="ui_progress"><div style="width:5%; background:#44B549" class="ui_progress_bar"></div></div></span></div></td></tr></tbody></table><div class="pagination pagination_wrp" style="display: none;"><span class="page_nav_area"><span class="page_num"><label>1</label>
+<span class="num_gap">/</span>
+<label>1</label></span><span class="goto_area"><input type="text">
+<a class="button page_go" href="javascript:;">跳转</a></span></span></div></div>
+                </div>
+            </div>
+            <h4 class="sub_title">城市分布&nbsp;&nbsp;<select id="btn_province" class="dropdown_select" style="display: none;"><option value="0">全国</option>
+                <option value="10">北京</option>
+                <option value="11">上海</option>
+                <option value="12">天津</option>
+                <option value="13">重庆</option>
+                <option value="14">香港</option>
+                <option value="15">澳门</option>
+                <option value="16">河北省</option>
+                <option value="17">山西省</option>
+                <option value="18">内蒙古</option>
+                <option value="19">辽宁省</option>
+                <option value="20">吉林省</option>
+                <option value="21">黑龙江省</option>
+                <option value="22">江苏省</option>
+                <option value="23">浙江省</option>
+                <option value="24">安徽省</option>
+                <option value="25">福建省</option>
+                <option value="26">江西省</option>
+                <option value="27">山东省</option>
+                <option value="28">河南省</option>
+                <option value="29">湖北省</option>
+                <option value="30">湖南省</option>
+                <option value="31">广东省</option>
+                <option value="32">广西省</option>
+                <option value="33">海南省</option>
+                <option value="34">四川省</option>
+                <option value="35">贵州省</option>
+                <option value="36">云南省</option>
+                <option value="37">西藏</option>
+                <option value="38">陕西省</option>
+                <option value="39">甘肃省</option>
+                <option value="40">青海省</option>
+                <option value="41">宁夏省</option>
+                <option value="42">新疆</option>
+                <option value="43">台湾省</option>
+            </select><div class="dropdown_menu" id="dropdown_select_0" style="width: 95px;">    <a href="javascript:;" class="button dropdown_switch">        <label>全国</label>        <i class="arrow"></i>    </a>    <ul class="dropdown_data_list"><li class="dropdown_data_item"><a href="javascript:;" data-val="0">全国</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="10">北京</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="11">上海</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="12">天津</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="13">重庆</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="14">香港</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="15">澳门</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="16">河北省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="17">山西省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="18">内蒙古</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="19">辽宁省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="20">吉林省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="21">黑龙江省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="22">江苏省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="23">浙江省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="24">安徽省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="25">福建省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="26">江西省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="27">山东省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="28">河南省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="29">湖北省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="30">湖南省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="31">广东省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="32">广西省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="33">海南省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="34">四川省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="35">贵州省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="36">云南省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="37">西藏</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="38">陕西省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="39">甘肃省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="40">青海省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="41">宁夏省</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="42">新疆</a></li><li class="dropdown_data_item"><a href="javascript:;" data-val="43">台湾省</a></li>    </ul></div></h4>
+            <div class="sub_content">
+                <div class="gri_wrapper" id="tableList4city"><table class="gri_stable" id="tableList4city_table"><colgroup span="3"><col class="gri_AttrValue"><col class="gri_UserCount"><col class="gri_percent" style="width: 70%;"></colgroup><thead><tr><th name="AttrValue" class="" style="text-align: left;">城市</th><th name="UserCount" class="hover enable" style="text-align: right;">用户数<i class="icon-order-hover"></i></th><th name="percent" class="" style="text-align: right;"> </th></tr></thead><tbody><tr><td><div style="width: 100%; height: 100%;text-align:left;">上海</div></td><td><div style="width: 100%; height: 100%;text-align:right;">13</div></td><td><div style="width: 100%; height: 100%;text-align:left;"><span><div class="ui_progress"><div style="width:53%; background:#44B549" class="ui_progress_bar"></div></div></span></div></td></tr><tr><td><div style="width: 100%; height: 100%;text-align:left;">北京</div></td><td><div style="width: 100%; height: 100%;text-align:right;">4</div></td><td><div style="width: 100%; height: 100%;text-align:left;"><span><div class="ui_progress"><div style="width:17%; background:#44B549" class="ui_progress_bar"></div></div></span></div></td></tr><tr><td><div style="width: 100%; height: 100%;text-align:left;">长沙</div></td><td><div style="width: 100%; height: 100%;text-align:right;">1</div></td><td><div style="width: 100%; height: 100%;text-align:left;"><span><div class="ui_progress"><div style="width:5%; background:#44B549" class="ui_progress_bar"></div></div></span></div></td></tr><tr><td><div style="width: 100%; height: 100%;text-align:left;">甘南</div></td><td><div style="width: 100%; height: 100%;text-align:right;">1</div></td><td><div style="width: 100%; height: 100%;text-align:left;"><span><div class="ui_progress"><div style="width:5%; background:#44B549" class="ui_progress_bar"></div></div></span></div></td></tr><tr><td><div style="width: 100%; height: 100%;text-align:left;">塔城</div></td><td><div style="width: 100%; height: 100%;text-align:right;">1</div></td><td><div style="width: 100%; height: 100%;text-align:left;"><span><div class="ui_progress"><div style="width:5%; background:#44B549" class="ui_progress_bar"></div></div></span></div></td></tr><tr><td><div style="width: 100%; height: 100%;text-align:left;">未知</div></td><td><div style="width: 100%; height: 100%;text-align:right;">2</div></td><td><div style="width: 100%; height: 100%;text-align:left;"><span><div class="ui_progress"><div style="width:9%; background:#44B549" class="ui_progress_bar"></div></div></span></div></td></tr><tr><td><div style="width: 100%; height: 100%;text-align:left;">阜阳</div></td><td><div style="width: 100%; height: 100%;text-align:right;">1</div></td><td><div style="width: 100%; height: 100%;text-align:left;"><span><div class="ui_progress"><div style="width:5%; background:#44B549" class="ui_progress_bar"></div></div></span></div></td></tr><tr><td><div style="width: 100%; height: 100%;text-align:left;">广州</div></td><td><div style="width: 100%; height: 100%;text-align:right;">1</div></td><td><div style="width: 100%; height: 100%;text-align:left;"><span><div class="ui_progress"><div style="width:5%; background:#44B549" class="ui_progress_bar"></div></div></span></div></td></tr><tr><td><div style="width: 100%; height: 100%;text-align:left;">重庆</div></td><td><div style="width: 100%; height: 100%;text-align:right;">1</div></td><td><div style="width: 100%; height: 100%;text-align:left;"><span><div class="ui_progress"><div style="width:5%; background:#44B549" class="ui_progress_bar"></div></div></span></div></td></tr></tbody></table><div class="pagination pagination_wrp" style="display: none;"><span class="page_nav_area"><span class="page_num"><label>1</label>
+<span class="num_gap">/</span>
+<label>1</label></span><span class="goto_area"><input type="text">
+<a class="button page_go" href="javascript:;">跳转</a></span></span></div></div>
+            </div>
+            <hr class="split">
+        </div>
+    </div>
+</div>

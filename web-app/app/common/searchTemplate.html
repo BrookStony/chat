@@ -1,0 +1,15 @@
+<div class="input-group" style="width: 200px">
+    <div class="input-group-btn">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">{{searchLabel}}
+            <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li ng-repeat="f in searchFields" data-trigger="click" ng-click="selectedSearchField(f)">
+                <a href="javascript:void(0)">{{f.label}}</a>
+            </li>
+        </ul>
+    </div><!-- /btn-group -->
+    <input id="searchFilter" ng-model="search.filter" type="text" ui-blur="refresh()" class="form-control" placeholder=""
+           style="width: 200px;display: inline">
+    <span class="input-group-addon" ng-click="refresh()"><i class="glyphicon glyphicon-search"></i></span>
+</div>

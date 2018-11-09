@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link href="css/style.css" rel="stylesheet" />
+		<style>
+			.mui-btn {
+				margin-top: 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav">
+			<a class="mui-action-back mui-icon mui-icon-left-nav mui-pull-left"></a>
+			<h1 class="mui-title">注册</h1>
+		</header>
+		<div class="mui-content">
+			<div class="mui-content-padded">
+				<h5>有底色</h5>
+				<span class="mui-badge">1</span>
+				<span class="mui-badge mui-badge-primary">12</span>
+				<span class="mui-badge mui-badge-success">123</span>
+				<span class="mui-badge mui-badge-warning">3</span>
+				<span class="mui-badge mui-badge-danger">45</span>
+				<span class="mui-badge mui-badge-purple">456</span>
+				<h5>无底色（使用父元素背景色）</h5>
+				<span class="mui-badge mui-badge-inverted">1</span>
+				<span class="mui-badge mui-badge-primary mui-badge-inverted">2</span>
+				<span class="mui-badge mui-badge-success mui-badge-inverted">3</span>
+				<span class="mui-badge mui-badge-warning mui-badge-inverted">4</span>
+				<span class="mui-badge mui-badge-danger mui-badge-inverted">5</span>
+				<span class="mui-badge mui-badge-royal mui-badge-inverted">6</span>
+			</div>
+			<div class="mui-content-padded">
+				<button class="mui-btn">Button</button>
+				<button class="mui-btn mui-btn-primary">Button</button>
+				<button class="mui-btn mui-btn-positive">Button</button>
+				<button class="mui-btn mui-btn-negative">Button</button>
+				<button class="mui-btn mui-btn-link">Button</button>
+
+				<button class="mui-btn mui-btn-outlined">Button</button>
+				<button class="mui-btn mui-btn-primary mui-btn-outlined">Button</button>
+				<button class="mui-btn mui-btn-positive mui-btn-outlined">Button</button>
+				<button class="mui-btn mui-btn-negative mui-btn-outlined">Button</button>
+			</div>
+			<div class="mui-content-padded">
+				<button class="mui-btn">
+					<span class="mui-icon mui-icon-star"></span> Button
+				</button>
+				<button class="mui-btn mui-btn-primary">
+					<span class="mui-icon mui-icon-search"></span> Button
+				</button>
+				<button class="mui-btn mui-btn-positive">
+					<span class="mui-icon mui-icon-weixin"></span> Button
+				</button>
+				<button class="mui-btn mui-btn-negative">
+					<span class="mui-icon mui-icon-list"></span> Button
+				</button>
+				<button class="mui-btn mui-btn-link">
+					<span class="mui-icon mui-icon-left"></span> Button
+				</button>
+			</div>
+			<button class="mui-btn mui-btn-primary mui-btn-block">Block button</button>
+			<h5 class="mui-content-padded">图标左对齐</h5>
+			<div class="mui-card">
+				<form class="mui-input-group">
+					<div class="mui-input-row mui-checkbox mui-left">
+						<label>Checkbox</label>
+						<input name="checkbox" type="checkbox">
+					</div>
+					<div class="mui-input-row mui-checkbox mui-left">
+						<label>Checkbox</label>
+						<input name="checkbox" type="checkbox" checked>
+					</div>
+				</form>
+			</div>
+			<h5 class="mui-content-padded">图标右对齐</h5>
+			<div class="mui-card">
+				<form class="mui-input-group">
+					<div class="mui-input-row mui-checkbox">
+						<label>Checkbox</label>
+						<input name="checkbox1" type="checkbox">
+					</div>
+					<div class="mui-input-row mui-checkbox">
+						<label>Checkbox</label>
+						<input name="checkbox1" type="checkbox" checked>
+					</div>
+				</form>
+			</div>
+			<div class="mui-content-padded">
+				<form class="mui-input-group">
+					<div class="mui-input-row">
+						<label>Input</label>
+						<input type="text" placeholder="普通输入框">
+					</div>
+					<div class="mui-input-row">
+						<label>Input</label>
+						<input type="text" class="mui-input-clear" placeholder="带清除按钮的输入框">
+					</div>
+					<div class="mui-input-row">
+						<label>Input</label>
+						<input type="text" class="mui-input-speech mui-input-clear" placeholder="语音输入">
+					</div>
+					<div class="mui-button-row">
+						<button class="mui-btn mui-btn-primary" onclick="return false;">确认</button>&nbsp;&nbsp;
+						<button class="mui-btn mui-btn-primary" onclick="return false;">取消</button>
+					</div>
+				</form>
+			</div>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell">Item 1 <span class="mui-badge mui-badge-primary">14</span>
+				</li>
+				<li class="mui-table-view-cell">Item 2 <span class="mui-badge mui-badge-success">1</span>
+				</li>
+				<li class="mui-table-view-cell">Item 3 <span class="mui-badge">5</span>
+				</li>
+			</ul>
+			<ul class="mui-table-view">
+				<li class="mui-table-view-cell mui-hidden">cared
+					<div id="M_Toggle" class="mui-switch mui-active">
+						<div class="mui-switch-handle"></div>
+					</div>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<a href="#">
+						<img class="mui-media-object mui-pull-right" src="http://dcloudio.github.io/mui/assets/img/shuijiao.jpg">
+						<div class="mui-media-body">
+							幸福
+							<p class='mui-ellipsis'>能和心爱的人一起睡觉，是件幸福的事情；可是，打呼噜怎么办？</p>
+						</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<a href="#">
+						<img class="mui-media-object mui-pull-right" src="http://dcloudio.github.io/mui/assets/img/muwu.jpg">
+						<div class="mui-media-body">
+							木屋
+							<p class='mui-ellipsis'>想要这样一间小木屋，夏天挫冰吃瓜，冬天围炉取暖.</p>
+						</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<a href="#">
+						<img class="mui-media-object mui-pull-right" src="http://dcloudio.github.io/mui/assets/img/cbd.jpg">
+						<div class="mui-media-body">
+							CBD
+							<p class='mui-ellipsis'>烤炉模式的城，到黄昏，如同打翻的调色盘一般.</p>
+						</div>
+					</a>
+				</li>
+				<li class="mui-table-view-cell mui-media">
+					<a href="#">
+						<img class="mui-media-object mui-pull-right" src="http://dcloudio.github.io/mui/assets/img/yuantiao.jpg">
+						<div class="mui-media-body">
+							远眺
+							<p class='mui-ellipsis'>静静的看这个世界，最后终于疯了</p>
+						</div>
+					</a>
+				</li>
+			</ul>
+		</div>
+	</body>
+
+</html>

@@ -1,0 +1,73 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">微信公众号</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+<div class="btn-toolbar" style="margin-top: 0">
+    <div class="btn-group">
+        <a href="#/account/create" class="btn btn-success">
+            <i class="glyphicon glyphicon-plus"></i>
+            新增微信公众号
+        </a>
+    </div>
+    <div class="btn-group pull-right">
+        <div class="input-group" style="width: 200px">
+            <input ng-model="filter" type="text" ui-blur="refresh()" class="form-control" placeholder="名称..."
+                   style="width: 200px;display: inline">
+            <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+        </div>
+    </div>
+</div>
+<table id="account-grid" class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr>
+        <th sorting="sort" column="name">名称</th>
+        <th sorting="sort" column="type">类型</th>
+        <th sorting="sort" column="weixinId">原始ID</th>
+        <th sorting="sort" column="weixin">微信号</th>
+        <th sorting="sort" column="appId">AppId</th>
+        <th sorting="sort" column="token">Token</th>
+        <th style="width: 80px;">操作</th>
+        <th style="width: 80px;">同步</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="account in datas">
+        <td>
+            <span ng-bind="account.name"></span>
+        </td>
+        <td>
+            <span ng-bind="account.type | accountType"></span>
+        </td>
+        <td>
+            <span ng-bind="account.weixinId"></span>
+        </td>
+        <td>
+            <span ng-bind="account.weixin"></span>
+        </td>
+        <td ng-bind="account.appId"></td>
+        <td ng-bind="account.token"></td>
+        <td>
+            <a href="#/account/edit/{{ account.id }}" title="编辑">
+                <i class="glyphicon glyphicon-edit"></i>
+            </a>
+            <a href="javascript:void(0)" ng-click="remove(account.id)" style="margin-left: 5px;"
+               title="删除">
+                <i class="glyphicon glyphicon-remove"></i>
+            </a>
+        </td>
+        <td>
+            <button ng-disabled="loading" class="btn btn-default btn-xs" title="刷新AccessToken"
+                    ng-click="refreshAccessToken(account.id)">
+                <i class="glyphicon glyphicon-refresh"></i>
+            </button>
+            <button ng-disabled="loading" class="btn btn-default btn-xs" title="同步账户数据"
+                    ng-click="pull(account.id)">
+                <i class="glyphicon glyphicon-download"></i>
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<pagination total-items="totalItems" page="currentPage" items-per-page="max" max-size="10"></pagination>

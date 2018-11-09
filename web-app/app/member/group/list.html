@@ -1,0 +1,40 @@
+<div class="page-header">
+    <h3 class="pull-left">会员组列表</h3>
+
+    <div class="pull-right">
+        <a href="#/member/group/create" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus"></i>
+            新增会员组
+        </a>
+
+        <div class="search-box" ng-hide="true">
+            <input type="text" placeholder="Search"/>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr>
+        <th>组名</th>
+        <td>操作</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="group in datas">
+        <td>
+            <span ng-bind="group.name"></span>
+        </td>
+        <td>
+            <a href="#/member/group/edit/{{ group.id }}" style="padding-left: 5px;" title="编辑">
+                <i class="glyphicon glyphicon-edit"></i>
+            </a>
+            <a href="javascript:void(0)" style="padding-left: 5px;" title="删除">
+                <i class="glyphicon glyphicon-remove" ng-click="remove(group.id)"></i>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<pagination total-items="totalItems" page="currentPage" items-per-page="max" max-size="10"></pagination>

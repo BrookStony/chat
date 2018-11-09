@@ -1,0 +1,188 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 ng-show="$state.includes('autoReplyRule.create')" class="page-header">创建自动回复规则</h1>
+        <h1 ng-show="$state.includes('autoReplyRule.edit')" class="page-header">编辑自动回复规则</h1>
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
+ <div class="row">
+     <div class="col-lg-12">
+         <div class="panel panel-default">
+             <div class="panel-heading">
+                 自动回复规则
+             </div>
+             <div class="panel-body">
+                 <div class="row">
+                     <div class="col-lg-12">
+                        <form name="form" method="post" novalidate class="form-horizontal" autocomplete="off">
+
+    <div ng-show="errors" class="alert alert-warning">
+        <button type="button" class="close" ng-click="errors=null">&times;</button>
+        <p ng-repeat="error in errors" ng-bind="error.message"></p>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-1 control-label" for="name">
+            规则名称
+            <span class="required-indicator">*</span>
+        </label>
+
+        <div class="col-md-3">
+            <input class="form-control" type="text" id="name" placeholder="规则名称" required=""
+                   ng-model="autoReplyRule.name">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-1 control-label" for="type">
+            类型
+            <span class="required-indicator">*</span>
+        </label>
+
+        <div class="col-md-5">
+            <label class="radio-inline" ng-repeat="type in ['KEYWORD', 'MESSAGE', 'SUBSCRIBE']">
+                <input type="radio" ng-model="autoReplyRule.type" ng-value="type">{{type | autoReplyRuleTypeEnum}}
+            </label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-1 control-label" for="keyword">
+            关键字
+            <span class="required-indicator">*</span>
+        </label>
+
+        <div class="col-md-4">
+            <input class="form-control" type="text" id="keyword" placeholder="关键字" required=""
+                   ng-model="autoReplyRule.keyword">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-lg-10">
+        <div class="mass_send_message_tab">
+            <ul class="tab_navs" style="line-height: 38px">
+                <li class="tab_nav tab_text width5" title="文字">
+                    <a href="javascript:void(0)" ng-click="showTextArea()">&nbsp;<i class="fa fa-pencil"></i></a>
+                </li>
+                <li class="tab_nav tab_img width5" title="图片">
+                    <a href="javascript:void(0)" ng-click="openImageModal()">&nbsp;<i class="fa fa-picture-o"></i></a>
+                </li>
+                <li class="tab_nav tab_audio width5" title="语音">
+                    <a href="javascript:void(0)" ng-click="openModal()">&nbsp;<i class="fa fa-microphone-slash"></i></a>
+                </li>
+                <li class="tab_nav tab_video width5" title="视频">
+                    <a href="javascript:void(0)" ng-click="openModal()">&nbsp;<i class="fa fa-video-camera"></i></a>
+                </li>
+                <li class="tab_nav tab_article width5" title="图文消息">
+                    <a href="javascript:void(0)" ng-click="openArticleModal()">&nbsp;<i class="fa fa-file-image-o"></i></a>
+                </li>
+            </ul>
+            <div class="tab_panel">
+                <div class="tab_content" ng-show="messageType=='TEXT'">
+                    <div class="emotion_editor">
+                        <div class="edit_area js_editorArea" ng-maxlength="600" ng-model="sendText" contenteditable="true" style="overflow-y: auto;overflow-x: hidden">
+                        </div>
+                    </div>
+                </div>
+                <div class="tab_content" ng-show="messageType=='IMAGE'">
+                    <div class="js_imageArea">
+                        <div class="msgSender_media_1_2">
+                            <div class="appmsgSendedItem simple_img">
+                                <a target="_blank" href="javascript:void(0)">
+                                    <img class="icon" width="80px" height="80px" ng-src="{{imageUrl}}" alt="" ng-show="imageUrl">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab_content" ng-show="messageType=='AUDIO'">
+                    <div class="js_audioArea">
+                        <div class="msgSender_media_1_2">
+                            <div class="appmsgSendedItem simple_img">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab_content" ng-show="messageType=='VIDEO'">
+                    <div class="js_videoArea">
+                        <div class="msgSender_media_1_2">
+                            <div class="appmsgSendedItem simple_img">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab_content" ng-show="messageType=='NEWS'">
+                    <div class="article_preview_area" ng-show="article.articleItems.length == 0">
+                        <div id="articlePreview" class="article_preview">
+                            <div class="article_content">
+                                <h4 class="article_title"><a href="articleView?id={{article.id}}" target="_blank">{{article.title}}</a></h4>
+                                <div class="article_date">
+                                    <span ng-bind="article.dateCreated"></span>
+                                </div>
+                                <div class="article_img_preview">
+                                    <img class="article_cover_img" ng-show="article.coverImage" ng-src="{{article.coverImage.url}}" alr="封面图片">
+                                    <i class="article_cover_text" ng-show="!article.coverImage">封面图片</i>
+                                </div>
+                                <p class="article_describe" ng-bind="article.description"></p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mul_article_preview_area" ng-show="article.articleItems">
+                        <div class="mul_article_preview">
+                            <div class="mul_article_content">
+                                <div class="main_article_date">
+                                    <span ng-bind="article.dateCreated"></span>
+                                </div>
+                                <div class="main_article">
+                                    <div class="article_img_preview">
+                                        <img class="article_cover_img" ng-show="article.coverImage" ng-src="{{article.coverImage.url}}" alr="封面图片">
+                                        <span class="article_cover_text" ng-show="!article.coverImage">封面图片</span>
+                                    </div>
+                                    <div class="main_article_title"><a href="articleView?id={{article.id}}" target="_blank" ng-bind="article.title"></a></div>
+                                </div>
+                                <div class="article_item" ng-repeat="articleItem in article.articleItems">
+                                    <div class="article_item_title">
+                                        <h4><a href="articleView?item_id={{articleItem.id}}" target="_blank" ng-bind="articleItem.title"></a></h4>
+                                    </div>
+                                    <div class="article_item_img_preview" >
+                                        <img ng-src="{{articleItem.coverImage.url}}" style="width: 100%;height: 100%">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="form-group">
+        <label class="col-md-1 control-label" for="secondaryIndustry">
+            使用状态
+        </label>
+
+        <div class="col-md-3">
+            <label class="radio-inline" ng-repeat="status in ['ACTIVATE', 'STOP']">
+                <input type="radio" ng-model="autoReplyRule.status" ng-value="status">{{status | autoReplyRuleStatusEnum}}
+            </label>
+        </div>
+    </div>
+    <div class="form-actions">
+        <button ng-disabled="form.$invalid" type="submit" ng-click="submit()" class="btn btn-primary">确定</button>
+        <a href="#/autoReplyRule" class="btn btn-default">
+            取消
+        </a>
+    </div>
+</form>
+
+                     </div>
+                     <!-- /.row (nested) -->
+                 </div>
+                 <!-- /.panel-body -->
+             </div>
+             <!-- /.panel -->
+         </div>
+         <!-- /.col-lg-12 -->
+     </div>
+     <!-- /.row -->
+</div>
+

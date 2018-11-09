@@ -1,0 +1,56 @@
+<div class="page-header">
+    <h3 class="pull-left">账户清单</h3>
+
+    <div class="pull-right">
+        <a href="#/setting/account/create" class="btn btn-primary">
+            <i class="glyphicon glyphicon-plus"></i>
+            新增账户
+        </a>
+
+        <div class="search-box" ng-hide="true">
+            <input type="text" placeholder="Search"/>
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+    <tr>
+        <th>用户名</th>
+        <th>Token</th>
+        <th style="width: 50px;">操作</th>
+        <th style="width: 100px;">同步</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="accountInstance in datas">
+        <td>
+            <span ng-bind="accountInstance.username"></span>
+        </td>
+        <td ng-bind="accountInstance.token"></td>
+        <td>
+            <a href="#/setting/account/edit/{{ accountInstance.id }}" title="编辑">
+                <i class="glyphicon glyphicon-edit"></i>
+            </a>
+            <a href="javascript:void(0)" ng-click="remove(accountInstance.id)" style="margin-left: 5px;"
+               title="删除">
+                <i class="glyphicon glyphicon-remove"></i>
+            </a>
+        </td>
+        <td>
+            <button ng-disabled="loading" class="btn btn-default btn-xs" title="同步账户数据"
+                    ng-click="pull(accountInstance.id)">
+                <i class="glyphicon glyphicon-download"></i>
+            </button>
+            <button ng-disabled="loading" class="btn btn-default btn-xs"
+                    style="margin-left: 5px;"
+                    title="同步最近30天历史性能数据"
+                    ng-click="pullHistory(accountInstance.id)">
+                <i class="glyphicon glyphicon-time"></i>
+            </button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<pagination total-items="totalItems" page="currentPage" items-per-page="max" max-size="10"></pagination>

@@ -1,0 +1,120 @@
+<div class="material_content">
+    <div class="title_tab">
+        <ul class="tab_navs title_tab">
+            <li class="tab_nav first js_top selected">
+                <a href="#/material/article?accountId={{accountId}}" class="hidefocus" hidefocus="true">图文消息</a>
+            </li>
+            <li class="tab_nav">
+                <a href="#/material/picture?accountId={{accountId}}" class="hidefocus" hidefocus="true">图片</a>
+            </li>
+            <li class="tab_nav">
+                <a href="#/material/audio?accountId={{accountId}}" class="hidefocus" hidefocus="true">语音</a>
+            </li>
+            <li class="tab_nav">
+                <a href="#/material/video?accountId={{accountId}}" class="hidefocus" hidefocus="true">视频</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="article_list_title article_card_main_bd">
+        <div class="sub_title_bar">
+            <div class="info">
+                <h3>图文消息(共<span ng-bind="totalItems"></span>个)</h3>
+				<div class="rank_style">
+					<a href="javascript:;" class="btn_card_rank current" id="js_cardview" alt="卡片式">卡片式</a>
+					<a href="javascript:;" class="btn_list_rank" id="js_listview" alt="列表式" ng-click="transToArticleList()">列表式</a>
+				</div>
+            </div>
+        </div>
+
+        <div class="row" style="margin-left: 15px">
+            <div class="col-lg-4">
+                <div class="btn-group btn-group-justified">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-success" ng-click="transToCreateArticle()">
+                            <i class="fa fa-file-image-o fa-2x pull-left"></i> 添加单图文
+                        </button>
+                    </div>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-success" ng-click="transToMulCreateArticle()">
+                            <i class="fa fa-file-image-o fa-2x pull-left"></i> 添加多图文
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="article_list" masonry load-images="false">
+
+            <div ng-repeat="article in articles" class="masonry-brick">
+                <div class="article_preview_area" ng-show="article.articleItems.length == 0">
+                    <div id="articlePreview" class="article_preview">
+                        <div class="article_content">
+                            <h4 class="article_title"><a href="articleView?id={{article.id}}" target="_blank">{{article.title}}</a></h4>
+                            <div class="article_date">
+                                <span ng-bind="article.dateCreated"></span>
+                            </div>
+                            <div class="article_img_preview">
+                                <img class="article_cover_img" ng-show="article.coverImage" ng-src="{{article.coverImage.url}}" alr="封面图片">
+                                <i class="article_cover_text" ng-show="!article.coverImage">封面图片</i>
+                            </div>
+                            <p class="article_describe" ng-bind="article.description"></p>
+                        </div>
+                        <div class="operate_button">
+                            <div class="mul_edit">
+                                <a href="#/material/article/edit/{{article.id}}">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </a>
+                            </div>
+                            <div class="mul_delete">
+                                <a href="javascript:void (0)" ng-click="remove(article.id, $index)">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mul_article_preview_area" ng-show="article.articleItems">
+                    <div class="mul_article_preview">
+                        <div class="mul_article_content">
+                            <div class="main_article_date">
+                                <span ng-bind="article.dateCreated"></span>
+                            </div>
+                            <div class="main_article">
+                                <div class="article_img_preview">
+                                    <img class="article_cover_img" ng-show="article.coverImage" ng-src="{{article.coverImage.url}}" alr="封面图片">
+                                    <span class="article_cover_text" ng-show="!article.coverImage">封面图片</span>
+                                </div>
+                                <div class="main_article_title"><a href="articleView?id={{article.id}}" target="_blank" ng-bind="article.title"></a></div>
+                            </div>
+                            <div class="article_item" ng-repeat="articleItem in article.articleItems">
+                                <div class="article_item_title">
+                                    <h4><a href="articleView?item_id={{articleItem.id}}" target="_blank" ng-bind="articleItem.title"></a></h4>
+                                </div>
+                                <div class="article_item_img_preview" >
+                                    <img ng-src="{{articleItem.coverImage.url}}" style="width: 100%;height: 100%">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="operate_button">
+                            <div class="mul_edit">
+                                <a href="#/material/article/editMulArticle/{{article.id}}">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </a>
+                            </div>
+                            <div class="mul_delete">
+                                <a href="javascript:void (0)" ng-click="remove(article.id, $index)">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="!hasArticle" class="text-center col-lg-12" style="margin-top: 40px">
+        <div><h4>暂无数据</h4></div>
+    </div>
+</div>

@@ -1,0 +1,64 @@
+/*chatmsg*/
+.chatmsg {
+
+}
+.chatmsg img {
+    width: 48px;
+    height: 48px;
+}
+
+.chatmsg_img {
+    width: 80px;
+    height: 80px;
+}
+
+.imagemsg {
+
+}
+
+.chat_msg {
+
+}
+
+.chat_msg img {
+    width: 48px;
+    height: 48px;
+}
+
+.chat_msg_img {
+    width: 80px;
+    height: 80px;
+}
+
+.chat_msg .content {
+    margin-left: 80px;
+    margin-right: 365px;
+    padding-top: 6px;
+    color: #8d8d8d;
+    word-wrap: break-word;
+    word-break: break-all;
+}
+.chat_msg .content.text {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.chat_msg .media {
+    position: relative;
+    padding-left: 90px;
+    min-height: 80px;
+}
+.chat_msg .media .title_wrap {
+    color: #222;
+    display: inline-block;
+}
+.chat_msg .media .title_wrap .icon {
+    position: absolute;
+    left: 0;
+    background: transparent no-repeat 0 0;
+    width: 80px;
+    height: 80px;
+    vertical-align: middle;
+    display: inline-block;
+    background-color: #d7d8da!important;
+}

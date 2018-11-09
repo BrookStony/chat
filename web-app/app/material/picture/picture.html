@@ -1,0 +1,253 @@
+<div class="title_tab">
+    <ul class="tab_navs title_tab">
+        <li class="tab_nav first js_top ">
+            <a href="#/material/article" class="hidefocus" hidefocus="true">图文消息</a>
+        </li>
+        <li class="tab_nav  selected">
+            <a href="#/material/picture" class="hidefocus" hidefocus="true">图片</a>
+        </li>
+        <li class="tab_nav">
+            <a href="#/material/audio" class="hidefocus" hidefocus="true">语音</a>
+        </li>
+        <li class="tab_nav">
+            <a href="#/material/video" class="hidefocus" hidefocus="true">视频</a>
+        </li>
+    </ul>
+</div>
+
+<div style="margin: 20px">
+    <div class="row">
+        <div class="col-lg-11">
+            <form enctype="multipart/form-data">
+                <div class="form-group">
+                    <input type="file" id="uploadFile" name="picture" class="file" multiple data-preview-file-type="image"
+                           accept="image/gif, image/jpeg, image/bmp, image/png, image/jpg"/>
+                    <button type="button" class="btn btn-success" ng-click="ajaxFileUpload();">
+                        <span class="glyphicon glyphicon-upload"></span>上传
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-10">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="btn-toolbar">
+                        <div class="btn-group">
+                            <label class="btn btn-default">
+                                <input type="checkbox" ng-click="toggleCheckedAll()" ng-checked="checked"/>&nbsp;全选</label>
+                        </div>
+                        <div class="btn-group">
+                            <a href="javascript:void(0);" hidefocus="true" bs-popover="'material.picture.group.tpl.html'" data-placement="bottom" class="btn btn-success" ng-disabled="someSelected">
+                                <span class="glyphicon glyphicon-transfer"></span> 移动分组
+                                <script type="text/ng-template" id="material.picture.group.tpl.html">
+                                    <form role="form" style="width: 300px;padding: 0 10px;">
+                                        <button ng-click="hide()" type="button" class="close"
+                                                aria-hidden="true">&times;</button>
+                                        <div class="form-group" style="padding: 10px 0">
+                                            <label class="radio-inline" style="min-width: 100px">
+                                                <input type="radio" name="groupName" ng-value="null" ng-model="selectGroupType" ng-click="onGroupClick(groupType)">{{groupType.name}}
+                                            </label>
+                                            <label class="radio-inline" style="min-width: 100px" ng-repeat="group in pictureGroups">
+                                                <input type="radio" name="groupName" ng-value="group" ng-model="selectGroupType" ng-click="onGroupClick(group)"> {{group.name}}
+                                            </label>
+                                        </div>
+                                        <button ng-click="hide();moveToGroup();" type="button" class="btn btn-success" style="width: 40%">确定
+                                        </button>
+                                        <button ng-click="hide()" type="button" class="btn btn-default" style="margin-left: 10px;width: 40%">取消
+                                        </button>
+                                    </form>
+                                </script>
+                            </a>
+                        </div>
+                        <div class="btn-group">
+
+							<a href="javascript:void(0);" hidefocus="true" bs-popover="'material.picture.delete.tpl.html'" data-placement="bottom" class="btn btn-danger" ng-disabled="someSelected">
+								<span class="glyphicon glyphicon-remove"></span> 删除
+								<script type="text/ng-template" id="material.picture.delete.tpl.html">
+									<form role="form" style="width: 300px;padding: 10px 10px 0;">
+										<button ng-click="hide()" type="button" class="close"
+												aria-hidden="true">&times;</button>
+										<div class="form-group" style="padding: 10px 0">
+											<p>确定删除选中的素材吗？</p>
+										</div>
+										<button ng-click="hide();removePictures();" type="button" class="btn btn-success" style="width: 40%">确定
+										</button>
+										<button ng-click="hide()" type="button" class="btn btn-default" style="margin-left: 10px;width: 40%">取消
+										</button>
+									</form>
+								</script>
+							</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <ul class="picture_group">
+                                <li class="picture_items" ng-repeat="picture in pictures">
+                                    <div class="picture_item">
+                                        <img class="pic" ng-src="{{picture.url}}">
+                                        <span class="check_content">
+                                            <label class="frm_checkbox_label">
+                                                <input type="checkbox" ng-model="picture.checked"/>
+                                                <span ng-bind="picture.name | shortName"></span>
+                                            </label>
+                                        </span>
+                                    </div>
+
+                                    <ul class="msg_card">
+                                        <li class="grid_item size1of3">
+                                            <a href="javascript:void (0)" hidefocus="true" bs-popover="'material.single.edit.picture.tpl.html'" data-placement="bottom">
+                                                <span class="glyphicon glyphicon-pencil" title="编辑名称"></span>
+                                            </a>
+                                            <script type="text/ng-template" id="material.single.edit.picture.tpl.html">
+                                                <form name="updatePictureName" role="form" style="width: 200px;padding: 0 10px;">
+                                                    <button ng-click="hide()" type="button" class="close"
+                                                            aria-hidden="true">&times;</button>
+                                                    <div class="form-group" style="padding: 20px 0">
+                                                        <label for="editPictureName">编辑名称</label>
+                                                        <input type="text" class="form-control" id="editPictureName" ng-model="picture.name" required>
+                                                    </div>
+                                                    <button ng-click="hide();editPictureName(picture)"ng-disabled="updatePictureName.$invalid" type="button" class="btn btn-success" style="width: 40%">确定
+                                                    </button>
+                                                    <button ng-click="hide()" type="button" class="btn btn-default" style="margin-left: 10px;width: 40%">取消
+                                                    </button>
+                                                </form>
+                                            </script>
+                                        </li>
+                                        <li class="grid_item size1of3">
+                                            <a href="javascript:void (0)" hidefocus="true" bs-popover="'material.single.picture.group.tpl.html'" data-placement="bottom">
+                                                <span class="glyphicon glyphicon-transfer" title="移动分组"></span>
+                                                <script type="text/ng-template" id="material.single.picture.group.tpl.html">
+                                                    <button ng-click="hide()" type="button" class="close"
+                                                            aria-hidden="true">&times;</button>
+                                                    <form role="form" style="width: 300px;padding: 0 10px;">
+                                                        <div class="form-group" style="padding: 20px 0 0 0">
+                                                            <label class="radio-inline" style="min-width: 100px">
+                                                                <input type="radio" name="groupName" ng-value="null" ng-model="selectGroupType" ng-click="onGroupClick(groupType)">{{groupType.name}}
+                                                            </label>
+                                                            <label class="radio-inline" style="min-width: 100px" ng-repeat="group in pictureGroups" ng-hide="group.id == picture.pictureGroup.id">
+                                                                <input type="radio" name="groupName" ng-value="group" ng-model="selectGroupType" ng-click="onGroupClick(group)"> {{group.name}}
+                                                            </label>
+                                                        </div>
+                                                        <button ng-click="hide();moveToGroup(picture);" type="button" class="btn btn-success" style="width: 40%">确定
+                                                        </button>
+                                                        <button ng-click="hide()" type="button" class="btn btn-default" style="margin-left: 10px;width: 40%">取消
+                                                        </button>
+                                                    </form>
+                                                </script>
+                                            </a>
+                                        </li>
+                                        <li class="grid_item size1of3">
+                                            <a href="javascript:void (0)" bs-popover="'material.picture.single.delete.tpl.html'" data-placement="bottom">
+                                                <span class="glyphicon glyphicon-trash" title="删除"></span>
+                                            </a>
+                                            <script type="text/ng-template" id="material.picture.single.delete.tpl.html">
+                                                <form role="form" style="width: 300px;padding: 10px 10px 0;">
+                                                    <button ng-click="hide()" type="button" class="close"
+                                                            aria-hidden="true">&times;</button>
+                                                    <div class="form-group" style="padding: 10px 0">
+                                                        <p>确定删除此素材吗？</p>
+                                                    </div>
+                                                    <button ng-click="hide();removePicture(picture);" type="button" class="btn btn-success" style="width: 40%">确定
+                                                    </button>
+                                                    <button ng-click="hide()" type="button" class="btn btn-default" style="margin-left: 10px;width: 40%">取消
+                                                    </button>
+                                                </form>
+                                            </script>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div ng-show="hasPicture">
+                                <pagination total-items="totalItems" page="currentPage" items-per-page="max" max-size="10"></pagination>
+                            </div>
+                            <div ng-show="!hasPicture" class="text-center col-lg-11">
+                                <div><h4>暂无数据</h4></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-2">
+            <ul class="list-group">
+                <li class="list-group-item group-menu current_group" ng-click="refresh();" onclick="angular.element(this).scope().addClass(this)">
+                    <a href="javascript: void (0)">未分组 <span class="badge" ng-bind="withOutGroupPictures"></span>
+                    </a>
+                </li>
+                <li class="list-group-item group-menu" ng-repeat="group in pictureGroups" ng-click="refresh(group.id);" onclick="angular.element(this).scope().addClass(this)">
+                    <a href="javascript: void (0)">
+                        {{group.name}}
+                        <span class="badge" ng-bind="group.size"></span>
+                        <span class="glyphicon glyphicon-trash pull-right" bs-popover="'material.picture.delete.groupName.tpl.html'" data-placement="left" onclick="event.stopPropagation();">&nbsp;</span>
+                        <span class="glyphicon glyphicon-pencil pull-right" bs-popover="'material.picture.edit.groupName.tpl.html'" data-placement="left" onclick="event.stopPropagation();">&nbsp;</span>
+                    </a>
+                    <script type="text/ng-template" id="material.picture.edit.groupName.tpl.html">
+                        <form role="form" style="width: 200px" onclick="event.stopPropagation();">
+                            <button ng-click="hide()" type="button" class="close"
+                                    aria-hidden="true">&times;</button>
+                            <div class="form-group" style="padding: 20px 0">
+                                <label for="editGroupName">编辑名称</label>
+                                <input type="text" class="form-control" id="editGroupName" value="{{group.name}}" ng-model="group.name">
+                            </div>
+                            <button ng-click="hide();editGroupName(group);" type="button" class="btn btn-success" style="width: 40%">确定
+                            </button>
+                            <button ng-click="hide()" type="button" class="btn btn-default" style="margin-left: 10px;width: 40%">取消
+                            </button>
+                        </form>
+                    </script>
+                    <script type="text/ng-template" id="material.picture.delete.groupName.tpl.html">
+                        <form role="form" style="width: 200px" onclick="event.stopPropagation();">
+                            <button ng-click="hide()" type="button" class="close"
+                                    aria-hidden="true">&times;</button>
+                            <div class="form-group" style="padding: 20px 0">
+                                <p style="color:black">仅删除分组，不删除图片，组内图片将自动归入未分组！</p>
+                            </div>
+                            <button ng-click="hide();deleteGroup(group);" type="button" class="btn btn-success" style="width: 40%">确定
+                            </button>
+                            <button ng-click="hide()" type="button" class="btn btn-default" style="margin-left: 10px;width: 40%">取消
+                            </button>
+                        </form>
+                    </script>
+                </li>
+                <li class="list-group-item group-menu">
+                    <a href="javascript: void (0)" hidefocus="true" bs-popover="'material.picture.create.group.tpl.html'" data-placement="bottom">
+                        <span class="glyphicon glyphicon-plus"></span>新建分组
+                    </a>
+                </li>
+                <script type="text/ng-template" id="material.picture.create.group.tpl.html">
+                    <form name="form" role="form" style="width: 200px">
+                        <button ng-click="hide()" type="button" class="close"
+                                aria-hidden="true">&times;</button>
+                        <div class="form-group" style="padding: 20px 0">
+                            <label for="createGroup">创建分组</label>
+                            <input type="text" class="form-control" id="createGroup" ng-model="pictureGroup.name" required>
+                        </div>
+                        <button ng-click="hide();createGroup();" ng-disabled="form.$invalid" type="button" class="btn btn-success" style="width: 40%">确定
+                        </button>
+                        <button ng-click="hide()" type="button" class="btn btn-default" style="margin-left: 10px;width: 40%">取消
+                        </button>
+                    </form>
+                </script>
+            </ul>
+        </div>
+    </div>
+</div>
+<script>
+    $("#uploadFile").fileinput({
+        overwriteInitial: false,
+        showUpload: false,
+        showCaption: false,
+        maxFileSize: 1024*2,
+        browseLabel: '选择图片',
+        browseClass: 'btn btn-success'
+    });
+</script>

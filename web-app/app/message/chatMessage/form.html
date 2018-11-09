@@ -1,0 +1,190 @@
+<div class="page-header">
+    <h3 ng-show="$state.includes('member.member.create')" class="pull-left">创建会员</h3>
+
+    <h3 ng-show="$state.includes('member.member.edit')" class="pull-left">编辑会员</h3>
+</div>
+<form name="form" method="post" novalidate class="form-horizontal" autocomplete="off">
+
+    <div ng-show="errors" class="alert alert-warning">
+        <button type="button" class="close" ng-click="errors=null">&times;</button>
+        <p ng-repeat="error in errors" ng-bind="error.message"></p>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="memberid">
+            会员号
+            <span class="required-indicator">*</span>
+        </label>
+
+        <div class="col-md-5">
+            <input class="form-control" type="text" id="memberid" placeholder="会员号" required=""
+                   ng-model="member.memberid">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="openid">
+            微信标识
+            <span class="required-indicator">*</span>
+        </label>
+
+        <div class="col-md-5">
+            <input class="form-control" type="text" id="openid" placeholder="微信标识" required=""
+                   ng-model="member.openid">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="nickname">
+            昵称
+        </label>
+
+        <div class="col-md-2">
+            <input class="form-control" type="text" id="nickname" placeholder="昵称"
+                   ng-model="member.nickname">
+        </div>
+
+        <label class="col-md-1 control-label" for="name">
+            名称
+        </label>
+
+        <div class="col-md-2">
+            <input class="form-control" id="name" type="text" placeholder="名称"
+                   ng-model="member.name">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="sex">
+            性别
+        </label>
+
+        <div class="col-md-2">
+            <select class="form-control" id="sex" ng-model="member.sex">
+                <option value="male" selected="selected">男</option>
+                <option value="female">女</option>
+            </select>
+        </div>
+
+        <label class="col-md-1 control-label" for="age">
+            年龄
+        </label>
+
+        <div class="col-md-2">
+            <select class="form-control" id="age" ng-options="[1,2,3,4,5]" ng-model="member.age">
+            </select>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="birthday">
+            生日
+        </label>
+
+        <div class="col-md-5">
+            <input class="form-control" id="birthday" type="text" placeholder="生日"
+                   ng-model="member.birthday">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="phone">
+            电话
+        </label>
+
+        <div class="col-md-2">
+            <input class="form-control" id="phone" type="text" placeholder="电话"
+                   ng-model="member.phone">
+        </div>
+
+        <label class="col-md-1 control-label" for="mobile">
+            手机
+        </label>
+
+        <div class="col-md-2">
+            <input class="form-control" id="mobile" type="text" placeholder="手机"
+                   ng-model="member.mobile">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="weixin">
+            微信
+        </label>
+
+        <div class="col-md-2">
+            <input class="form-control" id="weixin" type="text" placeholder="微信"
+                   ng-model="member.weixin">
+        </div>
+
+        <label class="col-md-1 control-label" for="qq">
+            QQ
+        </label>
+
+        <div class="col-md-2">
+            <input class="form-control" id="qq" type="text" placeholder="QQ"
+                   ng-model="member.qq">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="email">
+            邮箱
+        </label>
+
+        <div class="col-md-5">
+            <input class="form-control" id="email" type="text" placeholder="邮箱"
+                   ng-model="member.email">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label">
+            所在地
+        </label>
+
+        <div class="col-md-5">
+            <input class="form-control" id="region" type="text" placeholder="所在地"
+                   ng-model="member.region">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="address">
+            地址
+        </label>
+
+        <div class="col-md-5">
+            <input class="form-control" id="address" type="text" placeholder="地址"
+                   ng-model="member.address">
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="col-md-2 control-label" for="postcode">
+            邮编
+        </label>
+
+        <div class="col-md-2">
+            <input class="form-control" id="postcode" type="text" placeholder="邮编"
+                   ng-model="member.postcode">
+        </div>
+
+        <label class="col-md-1 control-label" for="description">
+            备注
+        </label>
+
+        <div class="col-md-2">
+            <input class="form-control" id="description" type="text" placeholder="备注"
+                   ng-model="member.description">
+        </div>
+    </div>
+
+    <div class="form-actions">
+        <button ng-disabled="form.$invalid" type="submit" ng-click="submit()" class="btn btn-primary">确定</button>
+
+        <a href="#/member/member" class="btn btn-default">
+            取消
+        </a>
+    </div>
+</form>

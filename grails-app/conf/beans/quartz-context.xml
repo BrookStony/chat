@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+    <bean id="executor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+        <property name="corePoolSize" value="10"/>
+        <property name="maxPoolSize" value="50"/>
+        <property name="queueCapacity" value="1000"/>
+    </bean>
+    <bean name="daySynchJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="name" value="daySynchJob"/>
+        <property name="jobClass" value="com.trunksoft.chat.services.job.DaySynchJob"/>
+        <property name="durability" value="true"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="syncDomainService" value-ref="wechatSynchDomainService"/>
+            </map>
+        </property>
+    </bean>
+    <bean name="hourSynchJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="name" value="hourSynchJob"/>
+        <property name="jobClass" value="com.trunksoft.chat.services.job.HourSynchJob"/>
+        <property name="durability" value="true"/>
+    </bean>
+    <bean name="statusSynchJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="name" value="statusSynchJob"/>
+        <property name="jobClass" value="com.trunksoft.chat.services.job.StatusSynchJob"/>
+        <property name="durability" value="true"/>
+    </bean>
+    <bean name="memberDayStatJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="name" value="memberDayStatJob"/>
+        <property name="jobClass" value="com.trunksoft.chat.services.job.MemberDayStatJob"/>
+        <property name="durability" value="true"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="memberStatService" value-ref="memberStatService"/>
+            </map>
+        </property>
+    </bean>
+    <bean name="messageFilterRefreshJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
+        <property name="name" value="messageFilterRefreshJob"/>
+        <property name="jobClass" value="com.trunksoft.chat.services.job.MessageFilterRefreshJob"/>
+        <property name="durability" value="true"/>
+        <property name="jobDataAsMap">
+            <map>
+                <entry key="messageFilterService" value-ref="messageFilterService"/>
+            </map>
+        </property>
+    </bean>
+    <bean id="daySynchCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="daySynchJobDetail"/>
+        <property name="cronExpression" value="0 30 1 * * ?"/>
+    </bean>
+    <bean id="hourSynchCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="hourSynchJobDetail"/>
+        <property name="cronExpression" value="0 5 * * * ?"/>
+        <property name="startDelay" value="18000"/>
+    </bean>
+    <bean id="statusSynchCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="statusSynchJobDetail"/>
+        <property name="cronExpression" value="0 10 * * * ?"/>
+        <property name="startDelay" value="18000"/>
+    </bean>
+    <bean id="memberDayStatCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="memberDayStatJobDetail"/>
+        <property name="cronExpression" value="0 40 23 * * ?"/>
+    </bean>
+    <bean id="messageFilterRefreshCronTrigger" class="org.springframework.scheduling.quartz.CronTriggerFactoryBean">
+        <property name="jobDetail" ref="messageFilterRefreshJobDetail"/>
+        <property name="cronExpression" value="0 0/10 * * * ?"/>
+    </bean>
+    <bean id="quartzScheduler" class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+        <property name="autoStartup" value="${quartz.autoStartup}"/>
+        <property name="triggers">
+            <list>
+                <ref bean="daySynchCronTrigger"/>
+                <!--<ref bean="hourSynchCronTrigger"/>-->
+                <!--<ref bean="statusSynchCronTrigger"/>-->
+                <ref bean="memberDayStatCronTrigger"/>
+                <ref bean="messageFilterRefreshCronTrigger"/>
+            </list>
+        </property>
+        <property name="taskExecutor" ref="executor"/>
+    </bean>
+</beans>

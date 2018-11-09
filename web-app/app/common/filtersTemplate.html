@@ -1,0 +1,71 @@
+<button type="button" class="btn btn-default">
+    <span class="glyphicon glyphicon-filter"></span> 过滤器
+</button>
+<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+    <span class="caret"></span>
+    <span class="sr-only">+</span>
+</button>
+<script type="text/ng-template" id="marketing.filter.tpl.html">
+    <div onclick="event.stopPropagation()">
+        <button ng-click="hide()" type="button" class="close">&times;</button>
+        <div style="width: 200px">
+            <div ng-show="f.type=='tags'">
+                <div class="form-group">
+                    <label>{{f.label}}</label>
+                    <label ng-repeat="t in f.tags" class="checkbox">
+                        <input type="checkbox" ng-model="t.checked" ng-value="t.id"/>{{t.label}}
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary" ng-click="applyFilter();hide()">应用</button>
+                <button type="button" class="btn btn-danger" ng-click="cleanFilter(f);">清除</button>
+            </div>
+            <div ng-show="f.type=='enum'">
+                <div class="form-group">
+                    <label>{{f.label}}</label>
+                    <select class="form-control"
+                            ng-model="f.value" ng-options="v.label for v in f.values"></select>
+                </div>
+                <button type="submit" class="btn btn-primary" ng-click="applyFilter();hide()">应用</button>
+                <button type="button" class="btn btn-danger" ng-click="cleanFilter(f);">清除</button>
+            </div>
+            <div ng-show="f.type=='number'">
+                <label>{{f.label}}</label>
+
+                <form class="form-horizontal" role="form">
+                    <div class="form-group" ng-repeat="v in f.values" style="margin-bottom: 2px">
+                        <div class="col-md-4">
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-default">
+                                    {{v.label}}
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            <input type="number" min="0" class="form-control" ng-model="v.val">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" ng-click="applyFilter();hide()">应用</button>
+                    <button type="button" class="btn btn-danger" ng-click="cleanFilter(f);">清除</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</script>
+<ul class="dropdown-menu" onclick="event.stopPropagation()">
+    <li ng-repeat="f in filters" data-trigger="click"
+        ng-click="clickFilter()" bs-popover="'marketing.filter.tpl.html'">
+        <a href="javascript:void(0)">
+            <span class="glyphicon glyphicon-filter"></span> {{f.label}}
+            <span ng-show="filterCount($index)>0" class="badge pull-right">{{filterCount($index)}}</span>
+        </a>
+    </li>
+    <li class="divider"></li>
+    <li>
+        <a ng-click="cleanAllFilter()" href="javascript:void(0)"><span class="glyphicon glyphicon-remove-sign"></span>
+            清除所有过滤器</a>
+    </li>
+</ul>
+<div style="padding-top: 6px;padding-left:10px;display: inline-block">
+    <span class="badge">{{filtersCount()}}</span>
+</div>

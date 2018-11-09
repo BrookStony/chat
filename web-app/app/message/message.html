@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-md-2">
+        <div class="well sidebar-nav">
+            <ul class="nav nav-list">
+                <li ng-class="{ active: $state.includes('message.chatmessage') }">
+                    <a href="#/message/chatmessage" class="hidefocus" hidefocus="true">消息</a>
+                </li>
+                <li ng-class="{ active: $state.includes('message.templatemessage') }">
+                    <a href="#/message/templatemessage" class="hidefocus" hidefocus="true">模板消息</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="col-md-10" style="padding: 0 15px 0 0">
+        <div class="well" ui-view></div>
+    </div>
+</div>

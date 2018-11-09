@@ -1,0 +1,170 @@
+<div class="row">
+    <div class="col-lg-12">
+        <h1 class="page-header">自定义菜单</h1>
+    </div>
+</div>
+<div id="wechat_menu_container" class="row">
+    <div class="col-lg-12">
+        <p>最多可创建3个一级菜单，每个一级菜单下可创建最多5个二级菜单。</p>
+    </div>
+    <div class="col-lg-12">
+        <div class="wechat_menu_container_box cell_layout">
+            <div class="wechat_menu_container_bd">
+                <div class="inner_side">
+                    <div class="bg">
+                        <div class="menu_manage">
+                            <div class="wechat_menu_title_bar">
+                                <h4>菜单管理
+                                    <div class="operbar">
+                                        <span class="glyphicon glyphicon-share-alt pull-right" title="取消修改" ng-show="menuSorting" ng-click="cancelMenuSort();">取消&nbsp;</span>
+                                        <span class="glyphicon glyphicon-floppy-disk pull-right" title="保存排序" ng-show="menuSorting" ng-click="saveMenuSort();">保存&nbsp;</span>
+                                        <span class="glyphicon glyphicon-sort pull-right" title="修改排序" ng-show="!menuSorting" ng-click="enableMenuSort();">&nbsp;</span>
+                                        <span class="glyphicon glyphicon-plus pull-right" title="添加菜单" ng-show="!menuSorting" ng-click="addMenu();">&nbsp;</span>
+                                    </div>
+                                </h4>
+                            </div>
+                            <div id="menuList" class="wechat_menu_list">
+                                <form id="menuForm">
+                                <ul class="wechat_menu_level1">
+                                    <li ng-repeat="weChatMenu in weChatMenus">
+                                        <a href="javascript:void(0);" ng-show="!weChatMenu.editable" ng-click="showMenu(weChatMenu);">{{weChatMenu.name}}
+                                            <div class="wechat_menu_operbar" ng-show="!menuCreating && !menuEditing && !menuSorting">
+                                                <span class="glyphicon glyphicon-trash pull-right" title="删除" ng-click="removeMenu(weChatMenu.id);" onclick="event.stopPropagation();">&nbsp;</span>
+                                                <span class="glyphicon glyphicon-pencil pull-right" title="修改" ng-click="editMenuName(weChatMenu);" onclick="event.stopPropagation();">&nbsp;</span>
+                                                <span class="glyphicon glyphicon-plus pull-right" title="添加" ng-click="addSubMenu(weChatMenu);" onclick="event.stopPropagation();">&nbsp;</span>
+                                            </div>
+                                            <div class="wechat_menu_sortbar" ng-show="menuSorting">
+                                                <span class="glyphicon glyphicon-arrow-up pull-right" title="上升" ng-click="menuSortUp(weChatMenu);" onclick="event.stopPropagation();">&nbsp;</span>
+                                                <span class="glyphicon glyphicon-arrow-down pull-right" title="下降" ng-click="menuSortDown(weChatMenu);" onclick="event.stopPropagation();">&nbsp;</span>
+                                            </div>
+                                        </a>
+                                        <a href="javascript:void(0);" ng-show="weChatMenu.editable">
+                                            <input ng-model="weChatMenu.name" style="width: 150px;"/>
+                                            <div class="wechat_menu_editbar">
+                                                <span class="glyphicon glyphicon-share-alt pull-right" title="取消" ng-click="cancelSaveMenuName(weChatMenu)" onclick="event.stopPropagation();">取消&nbsp;</span>
+                                                <span class="glyphicon glyphicon-floppy-disk pull-right" title="保存" ng-click="saveMenuName(weChatMenu)" onclick="event.stopPropagation();">保存&nbsp;</span>
+                                            </div>
+                                        </a>
+                                        <ul class="wechat_menu_level2">
+                                            <li ng-repeat="subMenu in weChatMenu.subMenus" ng-click="showSubMenu(subMenu);">
+                                                <a href="javascript:void(0);" ng-show="!subMenu.editable"> ● {{subMenu.name}}</a>
+                                                <input ng-model="subMenu.name" style="width: 120px;" ng-show="subMenu.editable" onclick="event.stopPropagation();"/>
+                                                <div class="wechat_sub_menu_editbar" ng-show="subMenu.editable">
+                                                    <span class="glyphicon glyphicon-share-alt pull-right" title="取消" ng-click="cancelSaveMenuName(subMenu)" onclick="event.stopPropagation();">取消&nbsp;</span>
+                                                    <span class="glyphicon glyphicon-floppy-disk pull-right" title="保存" ng-click="saveMenuName(subMenu)" onclick="event.stopPropagation();">保存&nbsp;</span>
+                                                </div>
+                                                <div class="wechat_sub_menu_operbar" ng-show="!menuCreating && !menuEditing && !menuSorting">
+                                                    <span class="glyphicon glyphicon-trash pull-right" ng-click="removeMenu(subMenu.id)" onclick="event.stopPropagation();">&nbsp;</span>
+                                                    <span class="glyphicon glyphicon-pencil pull-right" ng-click="editMenuName(subMenu)" onclick="event.stopPropagation();">&nbsp;</span>
+                                                </div>
+                                                <div class="wechat_sub_menu_sortbar" ng-show="menuSorting">
+                                                    <span class="glyphicon glyphicon-arrow-up pull-right" title="上升" ng-click="subMenuSortUp(weChatMenu, subMenu);" onclick="event.stopPropagation();">&nbsp;</span>
+                                                    <span class="glyphicon glyphicon-arrow-down pull-right" title="下降" ng-click="subMenuSortDown(weChatMenu, subMenu);" onclick="event.stopPropagation();">&nbsp;</span>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="inner_main">
+                    <div class="bg">
+                        <div class="action_setting">
+                            <div class="wechat_menu_title_bar light">
+                                <h4>设置动作</h4>
+                            </div>
+                            <div class="action_setting_container">
+                                <div class="action_setting_content" ng-show="!menuEditEnable && !menuCreating">
+                                    <div class="tips"><p>{{menuEditMessage}}</p></div>
+                                </div>
+                                <div class="action_setting_content" ng-show="menuEditEnable || menuCreating">
+                                    <form name="form" method="post" novalidate class="form-horizontal" autocomplete="off">
+                                        <div ng-show="errors" class="alert alert-warning">
+                                            <button type="button" class="close" ng-click="errors=null">&times;</button>
+                                            <p ng-repeat="error in errors" ng-bind="error.message"></p>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label" for="name">
+                                                菜单名称
+                                                <span class="required-indicator">*</span>
+                                            </label>
+                                            <div class="col-md-5">
+                                                <p ng-show="1 == editMenu.level">菜单名称名字不多于4个汉字或8个字母</p>
+                                                <p ng-show="2 == editMenu.level">菜单名称名字不多于8个汉字或16个字母</p>
+                                                <input class="form-control" type="text" id="name" required="" size="4"
+                                                       ng-model="editMenu.name">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">
+                                                菜单动作
+                                                <span class="required-indicator">*</span>
+                                            </label>
+                                            <div class="col-md-5">
+                                                <label class="radio-inline">
+                                                    <input type="radio" ng-model="editMenu.type" ng-value="0"><i class="glyphicon glyphicon-envelope"></i> 发送信息
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" ng-model="editMenu.type" ng-value="1"><i class="glyphicon glyphicon-globe"></i> 跳转到网页
+                                                </label>
+                                                <!--<a href="javascript:void(0);" id="sendMsg"><i class="icon_menu_action send"></i><strong>发送信息</strong></a>-->
+                                                <!--<a href="javascript:void(0);" id="clickUrl"><i class="icon_menu_action url"></i><strong>跳转到网页</strong></a>-->
+                                            </div>
+                                        </div>
+                                        <div class="form-group" ng-show="0 == editMenu.type">
+                                            <label class="col-md-2 control-label" for="eventKey">
+                                                事件
+                                                <span class="required-indicator">*</span>
+                                            </label>
+                                            <div class="col-md-5">
+                                                <p>订阅者点击该子菜单会收到以下消息</p>
+                                                <input class="form-control" type="text" id="eventKey" required=""
+                                                       ng-model="editMenu.eventKey">
+                                            </div>
+                                        </div>
+                                        <div class="form-group" ng-show="1 == editMenu.type">
+                                            <label class="col-md-2 control-label" for="url">
+                                                跳转URL
+                                                <span class="required-indicator">*</span>
+                                            </label>
+                                            <div class="col-md-5">
+                                                <p>订阅者点击该子菜单会跳到以下链接</p>
+                                                <input class="form-control" type="text" id="url" required=""
+                                                       ng-model="editMenu.url">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-md-2 control-label">
+                                            </label>
+                                            <div class="col-md-5">
+                                                <button ng-click="saveMenu()" class="btn btn-success" style="margin-left: 0.5em; margin-right: 0.5em;">
+                                                    <i class="glyphicon glyphicon-floppy-disk"></i> 保存
+                                                </button>
+                                                <button ng-click="cancelSaveMenu()" class="btn btn-success" style="margin-left: 0.5em; margin-right: 0.5em;">
+                                                    <i class="glyphicon glyphicon-share-alt"></i> 取消
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<div class="btn-toolbar" style="text-align: center;">
+    <button ng-click="publish()" class="btn btn-success" style="margin-left: 0.5em; margin-right: 0.5em;" title="发布到微信公众号">
+        <i class="glyphicon glyphicon-share-alt"></i> 发布
+    </button>
+    <button ng-click="pull()" class="btn btn-success" style="margin-left: 0.5em; margin-right: 0.5em;" title="从微信公众号同步">
+        <i class="glyphicon glyphicon-import"></i> 同步
+    </button>
+</div>
+<br>
