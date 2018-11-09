@@ -42,7 +42,7 @@
 
         <target>
             <!-- The destination package of your generated classes (within the destination directory) -->
-            <packageName>com.trunksoft.chat.jooq</packageName>
+            <packageName>com.seecent.chat.jooq</packageName>
 
             <!-- The destination directory of your generated classes -->
             <directory>D:/zjm/libraries/apache/jooq/chat</directory>

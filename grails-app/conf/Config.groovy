@@ -96,8 +96,8 @@ grails.json.legacy.builder = false
 // enabled native2ascii conversion of i18n properties files
 grails.enable.native2ascii = true
 // packages to include in Spring bean scanning
-grails.spring.bean.packages = ['com.trunksoft.chat.services', 'com.trunksoft.chat.message', 'com.trunksoft.chat.log',
-                               'com.trunksoft.chat.assets', 'com.trunksoft.chat.wechat', 'com.trunksoft.chat.northapi']
+grails.spring.bean.packages = ['com.seecent.chat.services', 'com.seecent.chat.message', 'com.seecent.chat.log',
+                               'com.seecent.chat.assets', 'com.seecent.chat.wechat', 'com.seecent.chat.northapi']
 // whether to disable processing of multi part requests
 grails.web.disable.multipart = false
 
@@ -186,11 +186,11 @@ chat {
 
 // Added by the Spring Security Core plugin:
 grails.plugin.springsecurity.active = true
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.trunksoft.platform.auth.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.trunksoft.platform.auth.UserRole'
-grails.plugin.springsecurity.authority.className = 'com.trunksoft.platform.auth.Role'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.seecent.platform.auth.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.seecent.platform.auth.UserRole'
+grails.plugin.springsecurity.authority.className = 'com.seecent.platform.auth.Role'
 //grails.plugin.springsecurity.securityConfigType = "Requestmap"
-//grails.plugin.springsecurity.requestMap.className = 'com.trunksoft.platform.Requestmap'
+//grails.plugin.springsecurity.requestMap.className = 'com.seecent.platform.Requestmap'
 //grails.plugin.springsecurity.requestMap.urlField = 'url'
 //grails.plugin.springsecurity.requestMap.configAttributeField = 'configAttribute'
 //grails.plugin.springsecurity.requestMap.httpMethodField = 'httpMethod'

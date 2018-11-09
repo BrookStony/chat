@@ -99,7 +99,7 @@
 </div>
 
 <div id="footer">
-    <p>&copy; 2013-2014 Trunksoft, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> V <g:meta
+    <p>&copy; 2013-2014 seecent, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> V <g:meta
             name="app.version"/></p>
 </div>
 <r:layoutResources/>

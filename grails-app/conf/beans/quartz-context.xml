@@ -9,7 +9,7 @@
     </bean>
     <bean name="daySynchJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
         <property name="name" value="daySynchJob"/>
-        <property name="jobClass" value="com.trunksoft.chat.services.job.DaySynchJob"/>
+        <property name="jobClass" value="com.seecent.chat.services.job.DaySynchJob"/>
         <property name="durability" value="true"/>
         <property name="jobDataAsMap">
             <map>
@@ -19,17 +19,17 @@
     </bean>
     <bean name="hourSynchJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
         <property name="name" value="hourSynchJob"/>
-        <property name="jobClass" value="com.trunksoft.chat.services.job.HourSynchJob"/>
+        <property name="jobClass" value="com.seecent.chat.services.job.HourSynchJob"/>
         <property name="durability" value="true"/>
     </bean>
     <bean name="statusSynchJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
         <property name="name" value="statusSynchJob"/>
-        <property name="jobClass" value="com.trunksoft.chat.services.job.StatusSynchJob"/>
+        <property name="jobClass" value="com.seecent.chat.services.job.StatusSynchJob"/>
         <property name="durability" value="true"/>
     </bean>
     <bean name="memberDayStatJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
         <property name="name" value="memberDayStatJob"/>
-        <property name="jobClass" value="com.trunksoft.chat.services.job.MemberDayStatJob"/>
+        <property name="jobClass" value="com.seecent.chat.services.job.MemberDayStatJob"/>
         <property name="durability" value="true"/>
         <property name="jobDataAsMap">
             <map>
@@ -39,7 +39,7 @@
     </bean>
     <bean name="messageFilterRefreshJobDetail" class="org.springframework.scheduling.quartz.JobDetailFactoryBean">
         <property name="name" value="messageFilterRefreshJob"/>
-        <property name="jobClass" value="com.trunksoft.chat.services.job.MessageFilterRefreshJob"/>
+        <property name="jobClass" value="com.seecent.chat.services.job.MessageFilterRefreshJob"/>
         <property name="durability" value="true"/>
         <property name="jobDataAsMap">
             <map>
